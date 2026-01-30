@@ -147,12 +147,33 @@ async function startClientCompression() {
     
     updateProgress('Loading PDF document...', 10);
     
+    let arrayBuffer = null;
     try {
         // Read the file
-        const arrayBuffer = await currentFile.arrayBuffer();
+        arrayBuffer = await currentFile.arrayBuffer();
         
         updateProgress('Parsing PDF structure...', 20);
         
+        // Quick heuristic: check for encryption/token that pdf-lib may not support
+        // and ensure the file contains a PDF header (%PDF-) near the start.
+        const headBytes = arrayBuffer.slice(0, 1024);
+        let head = '';
+        try {
+            head = new TextDecoder('utf-8', { fatal: false }).decode(headBytes);
+        } catch (e) {
+            head = '';
+        }
+
+        // Header check: look for %PDF- within the first 1KB
+        if (!/\%PDF-/.test(head)) {
+            // Provide a clear error for missing header (common for corrupted/truncated or wrong-file uploads)
+            throw new Error("No PDF header found (no '%PDF-' signature) — file may be corrupted, truncated, or not a PDF.");
+        }
+
+        if (/\/Encrypt/.test(head) || /Encrypt\b/.test(head)) {
+            throw new Error('PDF appears to be encrypted or uses features not supported client-side');
+        }
+
         // Load PDF using pdf-lib
         const { PDFDocument } = PDFLib;
         const pdfDoc = await PDFDocument.load(arrayBuffer);
@@ -211,7 +232,29 @@ async function startClientCompression() {
         
     } catch (error) {
         console.error('Compression error:', error);
-        showError('Failed to compress PDF. The file may be corrupted or use unsupported features.');
+        // Show detailed message and offer server-side option
+        const msg = error && error.message ? error.message : 'Failed to compress PDF. The file may be corrupted or use unsupported features.';
+        showError(msg);
+        // Reveal server option so user can try server-side processing if available
+        serverOption.style.display = 'block';
+        
+        // Attempt a PDF.js-based diagnostic/fallback to see if another parser can read the file
+        (async () => {
+            try {
+                if (typeof tryPdfJsFallback === 'function' && arrayBuffer) {
+                    const res = await tryPdfJsFallback(arrayBuffer);
+                    if (res && res.ok) {
+                        showError(`PDF.js parsed the document: ${res.numPages} pages detected. Consider server-side repair to reconstruct.`, 'success');
+                    } else {
+                        // Show reason why PDF.js failed
+                        showError(`PDF.js diagnostic failed: ${res && res.error ? res.error : 'unknown error'}`);
+                    }
+                }
+            } catch (e) {
+                console.warn('PDF.js diagnostic failed:', e && e.message);
+                appendErrorLog(`PDF.js diagnostic exception: ${e && e.message}`);
+            }
+        })();
     } finally {
         processingActive = false;
     }
@@ -341,32 +384,72 @@ function showError(message, type = 'error') {
     // Create error message element
     const errorDiv = document.createElement('div');
     errorDiv.className = `error-message ${type}`;
-    errorDiv.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-        ${message}
-    `;
-    
-    // Style the error message
+
+    // Make it focusable/selectable and accessible
+    errorDiv.tabIndex = 0;
+    errorDiv.setAttribute('role', 'alert');
+    errorDiv.setAttribute('aria-live', 'assertive');
+
+    // Message content with selectable span and a copy button
+    const msgSpan = document.createElement('span');
+    msgSpan.style.flex = '1';
+    msgSpan.style.whiteSpace = 'pre-wrap';
+    msgSpan.style.overflowWrap = 'anywhere';
+    msgSpan.textContent = message;
+
+    const icon = document.createElement('i');
+    icon.className = `fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}`;
+
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'Copy';
+    copyBtn.style.cssText = 'margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:inherit;padding:6px 10px;border-radius:6px;cursor:pointer;';
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(message);
+            copyBtn.textContent = 'Copied';
+            setTimeout(() => (copyBtn.textContent = 'Copy'), 2000);
+        } catch (_e) {
+            // ignore clipboard failures
+        }
+    });
+
+    errorDiv.appendChild(icon);
+    errorDiv.appendChild(msgSpan);
+    errorDiv.appendChild(copyBtn);
+
+    // Style the error message with sensible fallbacks so it's never transparent
     errorDiv.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? 'var(--color-success)' : 'var(--color-error)'};
+        background: ${type === 'success' ? "var(--color-success, #059669)" : "var(--color-error, #ef4444)"};
         color: white;
         padding: 12px 20px;
         border-radius: var(--radius-lg);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
+        z-index: 10000;
         display: flex;
         align-items: center;
         gap: 10px;
-        max-width: 400px;
+        max-width: 640px;
         animation: slideIn 0.3s ease;
+        white-space: pre-wrap;
     `;
-    
+
     document.body.appendChild(errorDiv);
-    
-    // Remove after 5 seconds
+
+    // Focus it so users (and screen readers) notice it immediately
+    errorDiv.focus();
+
+    // Append to persistent on-page error log for debugging (visible while page is open)
+    try {
+        ensureErrorLog();
+        appendErrorLog(message);
+    } catch (e) {
+        console.warn('Failed to append to error log:', e && e.message);
+    }
+
+    // Remove after a longer period to allow copying/selection
     setTimeout(() => {
         errorDiv.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => {
@@ -374,9 +457,85 @@ function showError(message, type = 'error') {
                 document.body.removeChild(errorDiv);
             }
         }, 300);
-    }, 5000);
-    
-    // Add keyframes for animation
+    }, 7000);
+
+// --- persistent error log helpers ---
+/**
+ * Try parsing the PDF with pdfjs-dist (more tolerant parser) to gather diagnostic info.
+ * Downloads pdfjs-dist from CDN on-demand.
+ */
+async function tryPdfJsFallback(arrayBuffer) {
+    const CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js';
+    const WORKER = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.worker.min.js';
+    try {
+        if (!window.pdfjsLib) {
+            await new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = CDN;
+                s.onload = resolve;
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+        const pdfjsLib = window.pdfjsLib;
+        if (pdfjsLib && pdfjsLib.GlobalWorkerOptions) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER;
+        }
+        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+        const pdf = await loadingTask.promise;
+        const numPages = pdf.numPages || 0;
+        let info = {};
+        try {
+            const meta = await pdf.getMetadata();
+            info = meta && meta.info ? meta.info : {};
+        } catch (e) {
+            // ignore metadata errors
+        }
+        appendErrorLog(`PDF.js parsed: pages=${numPages}; info=${JSON.stringify(info)}`);
+        return { ok: true, numPages, info };
+    } catch (err) {
+        appendErrorLog(`PDF.js fallback error: ${err && err.message}`);
+        return { ok: false, error: err && err.message };
+    }
+}
+
+function ensureErrorLog() {
+    if (document.getElementById('pdf-error-log')) return;
+    const log = document.createElement('aside');
+    log.id = 'pdf-error-log';
+    log.style.cssText = 'position:fixed;bottom:20px;left:20px;max-width:480px;max-height:40vh;overflow:auto;background:rgba(0,0,0,0.7);color:#fff;padding:12px;border-radius:8px;z-index:10000;font-size:13px;';
+    const title = document.createElement('div');
+    title.innerHTML = '<strong>Last Errors</strong> <button id="clear-error-log" style="margin-left:10px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:inherit;padding:2px 6px;border-radius:6px;cursor:pointer;">Clear</button>';
+    title.style.marginBottom = '8px';
+    log.appendChild(title);
+    const list = document.createElement('div');
+    list.id = 'pdf-error-log-list';
+    log.appendChild(list);
+    document.body.appendChild(log);
+    document.getElementById('clear-error-log').addEventListener('click', () => { document.getElementById('pdf-error-log-list').innerHTML = ''; });
+}
+
+function appendErrorLog(msg) {
+    const list = document.getElementById('pdf-error-log-list');
+    if (!list) return;
+    const item = document.createElement('div');
+    const time = new Date().toISOString();
+    item.style.padding = '6px 0';
+    item.style.borderTop = '1px dashed rgba(255,255,255,0.08)';
+    item.innerHTML = `<div style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:4px">${time}</div><div style="white-space:pre-wrap;">${escapeHtml(msg)}</div>`;
+    list.insertBefore(item, list.firstChild);
+}
+
+function escapeHtml(unsafe) {
+    return String(unsafe)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+    // Add keyframes for animation if missing
     if (!document.querySelector('#error-animations')) {
         const style = document.createElement('style');
         style.id = 'error-animations';
