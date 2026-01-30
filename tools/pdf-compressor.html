@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Compressor - Reduce PDF Size Online | GoToolly</title>
+    <meta name="description" content="Compress PDF files online for free. Reduce PDF size while preserving quality. Works entirely in your browser for files up to 5 MB.">
+    <meta name="keywords" content="compress PDF, reduce PDF size, shrink PDF, PDF compressor, optimize PDF, PDF size reducer">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        :root {
+            --panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-gradient: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        }
+        
+        .pdf-compressor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+            align-items: stretch;
+        }
+        
+        @media (max-width: 768px) {
+            .pdf-compressor {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .pdf-panel {
+            background: linear-gradient(145deg, #ffffff, #f9fafb);
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--panel-shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pdf-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border-gradient);
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .panel-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f2f5;
+            position: relative;
+        }
+        
+        .panel-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--color-primary);
+        }
+        
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-title i {
+            color: var(--color-primary);
+            font-size: 18px;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            text-align: center;
+            background: var(--color-bg-light);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+        
+        .upload-area.dragover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .file-info {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .file-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+        }
+        
+        .file-name {
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+        
+        .file-size {
+            color: var(--color-text-light);
+            margin-left: var(--space-4);
+        }
+        
+        .compression-options {
+            margin: var(--space-6) 0;
+        }
+        
+        .option-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .option-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+        
+        .option-name {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .option-value {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .option-slider {
+            width: 100%;
+            margin: var(--space-2) 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .option-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .option-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+            margin-top: var(--space-2);
+        }
+        
+        .progress-container {
+            display: none;
+            margin: var(--space-6) 0;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: var(--space-3);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            width: 0%;
+            transition: width 0.3s var(--ease-out);
+        }
+        
+        .status-text {
+            text-align: center;
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-2);
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            margin: var(--space-6) 0;
+        }
+        
+        .result-card {
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: var(--color-text);
+        }
+        
+        .result-value {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .result-value.size-reduction {
+            color: var(--color-success);
+        }
+        
+        .size-badge {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            margin-left: var(--space-2);
+        }
+        
+        .server-option {
+            display: none;
+            background: var(--color-warning-light);
+            border: 1px solid var(--color-warning);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .server-option h4 {
+            color: var(--color-warning-dark);
+            margin-bottom: var(--space-2);
+        }
+        
+        .server-option p {
+            font-size: var(--text-sm);
+            color: var(--color-text);
+            margin-bottom: var(--space-3);
+        }
+        
+        .info-box {
+            background: var(--color-bg-light);
+            border-left: 4px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin: var(--space-4) 0;
+        }
+        
+        .info-box p {
+            margin: 0;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+        }
+        
+        .honest-disclaimer {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: var(--text-sm);
+            padding: var(--space-4);
+            border-top: 1px solid var(--color-border-light);
+            margin-top: var(--space-6);
+        }
+        /* Ensure action buttons in results are visually consistent */
+        .tool-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+        .tool-actions .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            min-height: 44px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>PDF Compressor</h1>
+                <p class="page-description">
+                    Fast compression for everyday PDF files. Reduce file size by removing metadata and optimizing images. Best for small documents up to 5 MB.
+                </p>
+            </div>
+
+            <div class="pdf-compressor">
+                <!-- Left Panel: Upload & Options -->
+                <div class="pdf-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fas fa-upload"></i> Upload PDF</h2>
+                    </div>
+                    
+                    <div class="upload-area" id="drop-zone">
+                        <input type="file" id="pdf-input" accept=".pdf" style="display:none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: var(--space-4); color: var(--color-primary);">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <p><strong>Drop your PDF here or click to select</strong></p>
+                        <p class="small" style="margin-top: var(--space-2); color: var(--color-text-light);">
+                            Fast compression for files ≤ 5 MB
+                        </p>
+                        <button id="select-pdf" class="btn btn-primary" style="margin-top: var(--space-4);">Select PDF File</button>
+                    </div>
+                    
+                    <div class="file-info" id="file-info" style="display: none;">
+                        <div class="file-details">
+                            <span class="file-name" id="file-name">filename.pdf</span>
+                            <span class="file-size" id="file-size">0 KB</span>
+                        </div>
+                        <div class="file-details">
+                            <span style="color: var(--color-text-light);">Client-side compression ready</span>
+                            <span class="size-badge" id="file-status">Within limit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="server-option" id="server-option">
+                        <h4><i class="fas fa-server"></i> File too large for client-side compression</h4>
+                        <p>Your file exceeds 5 MB. For better compression results with larger files, use our server-side processing (requires upload).</p>
+                        <button id="use-server" class="btn btn-secondary" style="width: 100%;">Use Server Compression</button>
+                    </div>
+                    
+                    <div class="compression-options" id="compression-options" style="display: none;">
+                        <div class="option-group">
+                            <div class="option-label">
+                                <span class="option-name">Image Quality</span>
+                                <span class="option-value" id="image-quality-value">Medium</span>
+                            </div>
+                            <input type="range" min="0.1" max="1.0" step="0.1" value="0.7" class="option-slider" id="image-quality">
+                            <p class="option-description">
+                                Lower quality reduces file size more. Recommended: 0.7 for good balance.
+                            </p>
+                        </div>
+                        
+                        <div class="option-group">
+                            <div class="option-label">
+                                <span class="option-name">Remove Metadata</span>
+                                <span class="option-value" id="metadata-value">Yes</span>
+                            </div>
+                            <div style="display: flex; gap: var(--space-4); margin-top: var(--space-2);">
+                                <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer;">
+                                    <input type="radio" name="metadata" value="yes" checked> Yes
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer;">
+                                    <input type="radio" name="metadata" value="no"> No
+                                </label>
+                            </div>
+                            <p class="option-description">
+                                Remove author info, creation dates, and other metadata.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <p><strong>Honest note:</strong> Client-side compression works best for PDFs with images. Text-heavy PDFs may see minimal reduction. Results vary based on original PDF structure.</p>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Results -->
+                <div class="pdf-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fas fa-chart-bar"></i> Compression Results</h2>
+                    </div>
+                    
+                    <div id="initial-state" style="text-align: center; padding: var(--space-12) var(--space-4); color: var(--color-text-light);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: var(--space-4); opacity: 0.5;">
+                            <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>
+                        </svg>
+                        <p><strong>Upload a PDF to start compression</strong></p>
+                        <p style="font-size: var(--text-sm); margin-top: var(--space-2);">
+                            Files up to 5 MB are processed entirely in your browser.
+                        </p>
+                    </div>
+                    
+                    <div class="progress-container" id="progress-container">
+                        <div class="status-text" id="status-text">Initializing compression...</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-container" id="result-container">
+                        <div class="result-card">
+                            <div class="result-row">
+                                <span class="result-label">Original Size</span>
+                                <span class="result-value" id="original-size">0 KB</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Compressed Size</span>
+                                <span class="result-value" id="compressed-size">0 KB</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Size Reduction</span>
+                                <span class="result-value size-reduction" id="size-reduction">0%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-actions">
+                            <button id="download-pdf" class="btn btn-primary" style="width: 100%; margin-bottom: var(--space-4);" disabled>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                Download Compressed PDF
+                            </button>
+                            <button id="process-another" class="btn btn-secondary" style="width: 100%;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                                    <path d="M23 4v6h-6M1 20v-6h6"/>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                                </svg>
+                                Compress Another PDF
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="honest-disclaimer">
+                        <p><strong>Transparency:</strong> This tool performs basic optimization. For advanced compression with Ghostscript/qPDF, use server-side option for files > 5 MB.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Instruction Manuals -->
+            <div class="instruction-manuals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="card">
+                    <h3>How It Works</h3>
+                    <ol>
+                        <li><strong>Upload</strong> your PDF file (≤ 5 MB)</li>
+                        <li><strong>Adjust</strong> compression settings</li>
+                        <li><strong>Process</strong> entirely in your browser</li>
+                        <li><strong>Download</strong> the compressed PDF</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>What Gets Compressed</h3>
+                    <ul>
+                        <li><strong>Images</strong> inside the PDF are downscaled</li>
+                        <li><strong>Metadata</strong> (author, dates) is removed</li>
+                        <li><strong>Document</strong> is re-saved efficiently</li>
+                        <li><strong>Quality</strong> is preserved as much as possible</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Limitations</h3>
+                    <ul>
+                        <li>✅ Files ≤ 5 MB: Client-side processing</li>
+                        <li>✅ Basic image optimization</li>
+                        <li>✅ Metadata removal</li>
+                        <li>⚠️ Files > 5 MB: Server-side required</li>
+                        <li>⚠️ Text-heavy PDFs: Minimal reduction</li>
+                        <li>⚠️ No advanced PDF features</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Privacy Guaranteed</h3>
+                    <p>Files ≤ 5 MB are processed locally in your browser. No uploads to any server. Files never leave your computer.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Related Tools</h3>
+                    <ul class="related-tools">
+                        <li><a href="/tools/pdf-compressor.html" class="active">PDF Compressor</a></li>
+                        <li><a href="/tools/pdf-merger.html">PDF Merger</a></li>
+                        <li><a href="/tools/pdf-splitter-rotator.html">PDF Splitter & Rotator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/pdf-compressor.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

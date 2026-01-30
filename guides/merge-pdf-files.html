@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF Files: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master PDF merging techniques. Learn how to combine multiple PDF files into organized, professional documents while maintaining quality and security.">
+    <meta name="keywords" content="merge PDF files, combine PDF documents, PDF merger guide, consolidate PDFs, PDF document management, merge multiple PDFs">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><path d="M20,20 L40,40 L60,20 L80,40" stroke="white" fill="none" stroke-width="2"/><path d="M30,60 L50,80 L70,60" stroke="white" fill="none" stroke-width="2"/></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .benefit-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #3b82f6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .use-case-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pro-tip {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .security-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(29, 78, 216, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-6) 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--color-border);
+            padding: var(--space-3);
+            text-align: left;
+        }
+        
+        .comparison-table thead {
+            background-color: var(--color-surface-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Merge PDF Files: Complete Guide 2026</h1>
+                <p class="page-description">
+                    Master the art of PDF merging. Learn professional techniques for combining multiple PDFs into organized, secure documents while preserving quality and optimizing workflows.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/pdf-merger.html" class="btn btn-primary btn-lg">📄 Merge PDFs Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    No uploads • No sign-up • Your files stay on your device
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why PDF Merging is Essential for Modern Workflows</h2>
+                    <p>
+                        PDF merging transforms scattered documents into organized, professional files. Whether you're compiling reports, combining invoices, or creating comprehensive documents, effective PDF merging saves time and enhances document management.
+                    </p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📚</div>
+                            <h3 style="margin-top: 0;">Professional Document Creation</h3>
+                            <p>Combine multiple PDFs into polished, organized documents for presentations, reports, and submissions.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">⚡</div>
+                            <h3 style="margin-top: 0;">Workflow Efficiency</h3>
+                            <p>Streamline document processing by merging related files instead of managing multiple separate documents.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🔒</div>
+                            <h3 style="margin-top: 0;">Secure Collaboration</h3>
+                            <p>Share single, comprehensive documents instead of multiple files, reducing confusion and security risks.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Security Section -->
+                <section>
+                    <div class="security-box">
+                        <h2 style="margin-top: 0;">🛡️ Security First: How Our PDF Merger Protects Your Files</h2>
+                        <p><strong>Local Processing:</strong> All PDF merging happens entirely in your browser. Your files never leave your computer or get uploaded to any server.</p>
+                        <p><strong>Privacy Guaranteed:</strong> We cannot access, view, or store your documents. Your sensitive information remains completely private.</p>
+                        <p><strong>No Watermarks:</strong> Merged PDFs contain no hidden watermarks, tracking codes, or advertisements.</p>
+                        <p><strong>Temporary Storage:</strong> Files are temporarily stored only in your browser's memory and are cleared when you close the tab.</p>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Merge PDFs Like a Pro</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Prepare Your PDFs</h3>
+                                <p>Gather all PDF files you want to merge. Organize them in your preferred order. Check that all files are readable and not password-protected (password-protected PDFs cannot be merged for security reasons).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Open PDF Merger Tool</h3>
+                                <p>Navigate to our <a href="../tools/pdf-merger.html">PDF Merger tool</a>. The interface is clean and intuitive, with clear instructions for each step of the merging process.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Upload Your PDFs</h3>
+                                <p>Click "Select PDF Files" or drag and drop your files directly into the upload area. You can select multiple files at once. There's no file limit—merge as many PDFs as you need.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Arrange Document Order</h3>
+                                <p>Review the uploaded files in the preview panel. Drag and drop files to rearrange them into your desired sequence. The order you set here will be preserved in the final merged document.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Merge & Download</h3>
+                                <p>Click "Merge PDFs" to combine all files. The merging happens locally in your browser. Once complete, click "Download Merged PDF" to save your new consolidated document.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Use Cases -->
+                <section>
+                    <h2>Common Use Cases for PDF Merging</h2>
+                    
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📊</div>
+                            <h4 style="margin: var(--space-2) 0;">Business Reports</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Combine monthly reports, financial statements, and presentations</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🎓</div>
+                            <h4 style="margin: var(--space-2) 0;">Academic Papers</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Merge research papers, references, and appendices for submission</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📑</div>
+                            <h4 style="margin: var(--space-2) 0;">Legal Documents</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Combine contracts, agreements, and supporting documentation</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🏠</div>
+                            <h4 style="margin: var(--space-2) 0;">Real Estate</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Merge property documents, contracts, and inspection reports</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">💼</div>
+                            <h4 style="margin: var(--space-2) 0;">Job Applications</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Combine resume, cover letter, and supporting documents</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📸</div>
+                            <h4 style="margin: var(--space-2) 0;">Photo Albums</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Create PDF photo albums from multiple image PDFs</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Tips -->
+                <section>
+                    <h2>Professional Tips for Perfect PDF Merging</h2>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📄 Tip:</strong> <strong>Check file compatibility</strong> - Ensure all PDFs are properly formatted and not corrupted before merging. Preview each file to confirm quality.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔤 Tip:</strong> <strong>Consistent naming</strong> - Name your merged PDF descriptively (e.g., "Q4-Report-2026-Merged.pdf") for easy identification.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📏 Tip:</strong> <strong>Consider file size</strong> - Very large merged PDFs (100+ MB) may be difficult to email. Consider splitting or compressing if needed.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🎯 Tip:</strong> <strong>Add page numbers</strong> - After merging, consider adding page numbers using a PDF editor for easier navigation in long documents.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>💾 Tip:</strong> <strong>Keep originals</strong> - Always save your original PDFs separately before merging, in case you need to make changes later.</p>
+                    </div>
+                </section>
+
+                <!-- Comparison Table -->
+                <section>
+                    <h2>Manual vs. Automated PDF Merging</h2>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Pros</th>
+                                <th>Cons</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Manual (Copy-Paste)</strong></td>
+                                <td>Full control over placement, no software needed</td>
+                                <td>Time-consuming, formatting issues, quality loss</td>
+                                <td>Very small, simple documents</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Desktop Software</strong></td>
+                                <td>Advanced features, offline access</td>
+                                <td>Costly, updates required, learning curve</td>
+                                <td>Professional, frequent use</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Online Tools</strong></td>
+                                <td>Free, accessible anywhere, no installation</td>
+                                <td>Privacy concerns (except local tools)</td>
+                                <td>Occasional use, convenience</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Our Browser Tool</strong></td>
+                                <td>Free, local processing, privacy-focused, no sign-up</td>
+                                <td>Limited to browser capabilities</td>
+                                <td>Everyone (best balance of features & privacy)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Is there a limit to how many PDFs I can merge?</h3>
+                        <p>Our tool can merge any number of PDFs, limited only by your device's memory and performance. For optimal results, we recommend merging up to 20 PDFs at once, or larger batches in multiple sessions if needed.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Will the merged PDF maintain original quality?</h3>
+                        <p>Yes! Our merging process preserves the original quality of all PDFs. Images, text, formatting, and fonts remain exactly as in your original documents. No compression or quality loss occurs during merging.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I merge password-protected PDFs?</h3>
+                        <p>For security reasons, password-protected PDFs cannot be merged. Please remove passwords from your PDFs first using appropriate software, then merge the unprotected versions.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What's the maximum file size for merging?</h3>
+                        <p>PDFs up to 25MB each can be processed efficiently. Larger files may require more processing time depending on your device's capabilities. There's no total size limit for the merged document.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I reorder pages after merging?</h3>
+                        <p>Our tool allows you to reorder entire PDFs before merging, but not individual pages within PDFs. For page-level reordering, use our <a href="../tools/pdf-splitter-rotator.html">PDF Splitter &amp; Rotator</a> first, then merge in your desired order.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complete PDF Toolkit</h2>
+                    <p>Explore our full suite of PDF tools for comprehensive document management:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-splitter-rotator.html">✂️ Split &amp; Rotate PDFs</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract pages or rotate them in a single tool</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-splitter-rotator.html">🔄 Split &amp; Rotate PDFs</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Rotate pages that are sideways or upside down (use the split &amp; rotate tool)</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-compressor.html">💾 PDF Compressor</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Reduce PDF file size while maintaining quality</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-to-text.html">🔄 PDF to Text</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract text from PDFs (use our PDF to Text tool)</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Merge Your PDFs Securely & Efficiently</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Combine multiple PDFs into organized, professional documents. All processing happens locally in your browser—your files never leave your computer.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/pdf-merger.html" class="btn btn-primary btn-lg">📄 Merge PDFs Now</a>
+                    <a href="/guides/extract-pages-from-pdf.html" class="btn btn-secondary btn-lg">Learn PDF Splitting</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Local processing • No file uploads • Privacy guaranteed • No sign-up required
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>PDF Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/pdf-merger.html">PDF Merger</a></li>
+                        <li><a href="../tools/pdf-splitter-rotator.html">PDF Splitter &amp; Rotator</a></li>
+                        <li><a href="../tools/pdf-splitter-rotator.html">PDF Splitter &amp; Rotator</a></li>
+                        <li><a href="../tools/pdf-to-text.html">PDF to Text</a></li>
+                        <li><a href="../tools/pdf-to-text.html">PDF to Text</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

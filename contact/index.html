@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact GoToolly - Get in Touch</title>
+    <meta name="description" content="Contact the GoToolly team. We welcome feedback, suggestions, bug reports, and partnership inquiries.">
+    <meta name="keywords" content="contact GoToolly, support, feedback, bug report, partnership inquiry">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gotoolly.com/contact">
+    <meta property="og:title" content="GoToolly - Privacy-First Online Tools">
+    <meta property="og:description" content="Free browser-based tools for PDF, images, text & SEO. No uploads, no accounts, no tracking.">
+    <meta property="og:image" content="https://gotoolly.com/assets/images/logo-512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="GoToolly Logo - Privacy-first tools">
+    <meta property="og:site_name" content="GoToolly">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://gotoolly.com/contact">
+    <meta name="twitter:title" content="GoToolly - Privacy-First Online Tools">
+    <meta name="twitter:description" content="Free browser-based tools for PDF, images, text & SEO. No uploads, no accounts, no tracking.">
+    <meta name="twitter:image" content="https://gotoolly.com/assets/images/logo-512.png">
+    <meta name="twitter:image:alt" content="GoToolly Logo">
+    <meta name="twitter:creator" content="@GoToolly"> <!--@GoToolly -->
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://gotoolly.com/contact">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>    
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="../index.html" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../about" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link active">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Contact Us</h1>
+                <p class="page-description">
+                    Use this page to report technical issues, suggest improvements, ask questions about our tools, or discuss potential partnerships. We respond to all legitimate inquiries.
+                </p>
+            </div>
+
+            <!-- Contact Options -->
+            <div class="tool-layout">
+                <!-- Contact Form -->
+                <div>
+                    <section class="content-section">
+                        <div class="card">
+                            <div style="padding: var(--space-6);">
+                                <h2 style="margin-bottom: var(--space-6);">Send a Message</h2>
+                                
+                                <form id="contact-form" method="post" action="/api/contact" novalidate>
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">Your Name</label>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="First and last name" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required>
+                                        <small style="color: var(--color-text-light); font-size: var(--text-xs);">Used only to reply to your message</small>
+                                    </div>
+
+                                    <!-- Honeypot field (hidden from users, helps block bots) -->
+                                    <div class="form-group" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                                        <label for="website">Website</label>
+                                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" placeholder="Leave blank">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="subject" class="form-label">Message Type</label>
+                                        <select id="subject" name="messageType" class="form-control" required>
+                                            <option value="" disabled selected>Choose the most relevant option</option>
+                                            <option value="bug">Bug Report</option>
+                                            <option value="feedback">Feature Suggestion</option>
+                                            <option value="tool-request">New Tool Request</option>
+                                            <option value="partnership">Partnership Inquiry</option>
+                                            <option value="other">General Question</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="subject-line" class="form-label">Subject (optional)</label>
+                                        <input type="text" id="subject-line" name="subject_line" class="form-control" placeholder="Short subject">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="topic" class="form-label">Topic</label>
+                                        <select id="topic" name="topic" class="form-control" required>
+                                            <option value="support" selected>Support</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="security">Security Issue</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="message" class="form-label">Detailed Message</label>
+                                        <textarea id="message" name="message" class="form-control" rows="6" placeholder="Please include specific details, steps to reproduce issues, or clear explanations of suggestions..." required></textarea>
+                                        <small style="color: var(--color-text-light); font-size: var(--text-xs);">Complete information helps us provide better assistance</small>
+                                    </div>
+                                    
+                                    <div class="alert alert-info" style="margin-bottom: var(--space-6);">
+                                        <p style="margin-bottom: var(--space-2);"><strong>Response Information:</strong></p>
+                                        <ul style="margin-bottom: 0; font-size: var(--text-sm);">
+                                            <li>We typically respond within 1-3 business days</li>
+                                            <li>Bug reports receive priority attention</li>
+                                            <li>Include browser version and device type for technical issues</li>
+                                            <li>Messages are handled confidentially and not shared</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="privacy-consent" name="privacy_consent" class="checkbox-input" required>
+                                            <label for="privacy-consent" class="checkbox-label">
+                                                I understand this information will be used only to respond to my inquiry
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tool-actions">
+                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                        <button type="reset" class="btn btn-outline">Reset Form</button>
+                                    </div>
+
+                                    <div id="contact-form-status" role="status" aria-live="polite" style="margin-top: var(--space-4);"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="tool-sidebar">
+                    <section class="content-section">
+                        <div class="section-header">
+                            <h2>Direct Contact</h2>
+                        </div>
+                        
+                        <div class="tools-grid" role="list" aria-label="Direct contact options">
+                            <article class="card" role="listitem" aria-labelledby="support-heading">
+                                <h3 id="support-heading">Direct Contact Support</h3>
+                                <p><a href="mailto:support@gotoolly.com?subject=Support%20Request" rel="noopener noreferrer">support@gotoolly.com</a></p>
+                                <p style="font-size: var(--text-sm); color: var(--color-text-light);">Troubleshooting and Product Support</p>
+                            </article>
+                            
+                            <article class="card" role="listitem" aria-labelledby="general-heading">
+                                <h3 id="general-heading">General Inquiries</h3>
+                                <p><a href="mailto:contact@gotoolly.com?subject=General%20Inquiry" rel="noopener noreferrer">contact@gotoolly.com</a></p>
+                                <p style="font-size: var(--text-sm); color: var(--color-text-light);">Questions, feedback, partnerships</p>
+                            </article>
+                            
+                            <article class="card" role="listitem" aria-labelledby="security-heading">
+                                <h3 id="security-heading">Security Issues</h3>
+                                <p><a href="mailto:security@gotoolly.com?subject=Security%20Vulnerability%20Report" rel="noopener noreferrer">security@gotoolly.com</a></p>
+                                <p style="font-size: var(--text-sm); color: var(--color-text-light);">Vulnerability reports, security concerns</p>
+                            </article>
+                            
+                            <article class="card" role="listitem" aria-labelledby="technical-heading">
+                                <h3 id="technical-heading">Technical Problems</h3>
+                                <p>Use the contact form for bug reports and include:</p>
+                                <ul style="font-size: var(--text-sm); margin-left: var(--space-4);">
+                                    <li>Browser name and version</li>
+                                    <li>Device type (desktop/mobile)</li>
+                                    <li>Steps that led to the problem</li>
+                                    <li>What you expected to happen</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <!-- Support form removed — the top contact form will submit messages to support@gotoolly.com -->
+                    </section>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Response Expectations</h3>
+                        <ul class="sidebar-links">
+                            <li><strong>Response Time:</strong> 1-3 business days</li>
+                            <li><strong>Business Hours:</strong> Monday-Friday, EST</li>
+                            <li><strong>Priority:</strong> Security and bug reports first</li>
+                            <li><strong>Privacy:</strong> Messages handled confidentially</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Self-Service Resources</h3>
+                        <div class="alert alert-info">
+                            <p style="font-size: var(--text-sm); margin-bottom: var(--space-2);"><strong>Check first:</strong></p>
+                            <ul style="font-size: var(--text-sm); margin-bottom: 0;">
+                                <li><a href="/guides/index.html">Tool Guides</a> - Step-by-step instructions</li>
+                                <li><a href="/about">About Page</a> - How GoToolly works</li>
+                                <li>Browser console - For technical error details</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="tools-grid">
+                    <div class="card">
+                        <h3>What kind of support do you provide?</h3>
+                        <p>We help with technical issues, answer questions about tool functionality, and consider suggestions for improvements. We do not provide custom development or integrate with external systems.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How should I suggest new tools?</h3>
+                        <p>Describe the specific problem the tool would solve and who would use it. We focus on tools that work in browsers without uploading files and serve general rather than specialized needs.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Do you offer custom development services?</h3>
+                        <p>No. We maintain our existing tools and occasionally add new ones that align with our privacy-focused approach. We do not build custom tools or modify existing ones for specific use cases.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How do I report security issues?</h3>
+                        <p>Email <a href="mailto:security@gotoolly.com?subject=Security%20Vulnerability%20Report" rel="noopener noreferrer">security@gotoolly.com</a> with specific details about the vulnerability. Include steps to reproduce the issue and any supporting evidence. We address valid security reports promptly.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Pages -->
+            <section class="related-tools">
+                <h2>Additional Resources</h2>
+                <div class="tools-grid">
+                    <div class="card">
+                        <h3>Tool Documentation</h3>
+                        <p>Step-by-step guides for using each tool effectively and troubleshooting common issues.</p>
+                        <div class="card-footer">
+                            <a href="/guides/index.html" class="btn btn-outline btn-sm btn-full">View Guides</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Privacy Information</h3>
+                        <p>Detailed information about how we handle data and what information we collect (or don't collect).</p>
+                        <div class="card-footer">
+                            <a href="/legal/privacy-policy" class="btn btn-outline btn-sm btn-full">Read Policy</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How GoToolly Works</h3>
+                        <p>Learn about our technical approach, privacy principles, and what makes our tools different.</p>
+                        <div class="card-footer">
+                            <a href="/about" class="btn btn-outline btn-sm btn-full">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="/assets/js/main.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Contact form handling moved to external script for rate limiting and isolation
+    </script>
+    <script src="/assets/js/contact.js"></script>
+</body>
+</html>

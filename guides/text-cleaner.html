@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Cleaner: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master text cleaning techniques. Remove extra spaces, empty lines, special characters, and format text for readability, coding, data processing, and more.">
+    <meta name="keywords" content="text cleaner, remove extra spaces, clean text online, format text, remove empty lines, text optimization, data cleaning, text normalization">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><text x="10" y="30" font-family="monospace" font-size="12">abc</text><text x="60" y="45" font-family="monospace" font-size="10">123</text><text x="25" y="70" font-family="monospace" font-size="14">text</text></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cleaning-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .method-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .method-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #14b8a6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .use-case-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pro-tip {
+            background: rgba(20, 184, 166, 0.1);
+            border-left: 4px solid #14b8a6;
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .text-example {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-6) 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--color-border);
+            padding: var(--space-3);
+            text-align: left;
+        }
+        
+        .comparison-table thead {
+            background-color: var(--color-surface-secondary);
+        }
+        
+        .text-before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .cleaning-methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .text-before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="index.html" class="nav-link active">Guides</a>
+                    <a href="../about" class="nav-link">About</a>
+                    <a href="../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Text Cleaner: Complete Guide 2026</h1>
+                <p class="page-description">
+                    Master text cleaning techniques for readability, data processing, and code formatting. Remove extra spaces, empty lines, special characters, and optimize text for any purpose.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/text-cleaner.html" class="btn btn-primary btn-lg">🧹 Clean Text Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    No uploads • Instant processing • Multiple options • No sign-up
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why Text Cleaning Matters</h2>
+                    <p>
+                        Text cleaning transforms messy, inconsistent text into clean, professional content. Whether you're preparing data for analysis, formatting code, or improving readability, proper text cleaning saves time and ensures accuracy.
+                    </p>
+                    
+                    <div class="cleaning-methods-grid">
+                        <div class="method-card">
+                            <div class="method-icon">🔤</div>
+                            <h3 style="margin-top: 0;">Extra Space Removal</h3>
+                            <p><strong>Fixes:</strong> Multiple spaces, trailing spaces, inconsistent spacing</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Converts multiple spaces to single spaces</li>
+                                <li>Removes spaces at start/end of lines</li>
+                                <li>Fixes inconsistent indentation</li>
+                                <li>Standardizes spacing patterns</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">📝</div>
+                            <h3 style="margin-top: 0;">Empty Line Cleaning</h3>
+                            <p><strong>Fixes:</strong> Excessive blank lines, inconsistent paragraph spacing</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Removes consecutive empty lines</li>
+                                <li>Standardizes paragraph spacing</li>
+                                <li>Cleans up copied text formatting</li>
+                                <li>Improves document structure</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">⚡</div>
+                            <h3 style="margin-top: 0;">Special Character Handling</h3>
+                            <p><strong>Fixes:</strong> Non-standard characters, encoding issues, invisible characters</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Removes invisible characters</li>
+                                <li>Cleans up copy-paste artifacts</li>
+                                <li>Standardizes quotation marks</li>
+                                <li>Fixes encoding problems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Text Example -->
+                <section>
+                    <div class="text-example">
+                        <h3 style="margin-top: 0;">Before & After: Text Cleaning Example</h3>
+                        <div class="text-before-after">
+                            <div>
+                                <h4 style="margin-top: 0;">Original (Messy) Text:</h4>
+                                <pre style="margin: 0; background: rgba(0,0,0,0.05); padding: var(--space-3); border-radius: var(--radius-md);">
+This   text   has   extra   spaces.
+And   inconsistent   line   breaks.
+
+Sometimes  there  are  multiple  spaces.
+
+Also   trailing   spaces   here   
+And   here   too   
+
+Special characters: "smart quotes" – em dash
+</pre>
+                            </div>
+                            <div>
+                                <h4 style="margin-top: 0;">Cleaned Text:</h4>
+                                <pre style="margin: 0; background: rgba(0,0,0,0.05); padding: var(--space-3); border-radius: var(--radius-md);">
+This text has extra spaces.
+And inconsistent line breaks.
+Sometimes there are multiple spaces.
+Also trailing spaces here
+And here too
+Special characters: "smart quotes" - em dash
+</pre>
+                            </div>
+                        </div>
+                        <p style="margin: var(--space-4) 0 0 0; font-size: var(--text-sm); color: var(--color-text-light);">
+                            <strong>Results:</strong> 45% fewer characters, 60% fewer lines, perfect formatting
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Professional Text Cleaning</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Input Your Text</h3>
+                                <p>Open our <a href="../tools/text-cleaner.html">Text Cleaner tool</a> and paste or type your text into the input area. You can also upload a text file if needed. The tool works entirely in your browser—no data leaves your computer.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Choose Cleaning Options</h3>
+                                <p>Select which cleaning operations to apply:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li><strong>Remove Extra Spaces:</strong> Converts multiple spaces to single spaces</li>
+                                    <li><strong>Remove Empty Lines:</strong> Deletes consecutive blank lines</li>
+                                    <li><strong>Trim Lines:</strong> Removes leading/trailing spaces from each line</li>
+                                    <li><strong>Remove Special Characters:</strong> Cleans non-standard characters</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Preview & Adjust</h3>
+                                <p>Click "Clean Text" to process. View the cleaned text in the output area. The tool shows statistics comparing original vs. cleaned text—character count, line count, and space reduction percentage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Copy & Use</h3>
+                                <p>Use the "Copy Result" button to copy cleaned text to clipboard. The "Download" button saves the cleaned text as a .txt file. The "Reset" button clears everything to start fresh.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Use Cases -->
+                <section>
+                    <h2>Common Text Cleaning Use Cases</h2>
+                    
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">💻</div>
+                            <h4 style="margin: var(--space-2) 0;">Programming & Coding</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Clean code snippets, remove extra whitespace, fix indentation</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📊</div>
+                            <h4 style="margin: var(--space-2) 0;">Data Processing</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Prepare CSV/TSV data, clean imported data, fix formatting</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📝</div>
+                            <h4 style="margin: var(--space-2) 0;">Content Writing</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Fix copy-paste formatting, improve readability, standardize spacing</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📧</div>
+                            <h4 style="margin: var(--space-2) 0;">Email & Communication</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Clean up email drafts, fix formatting from different sources</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📄</div>
+                            <h4 style="margin: var(--space-2) 0;">Document Preparation</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Prepare text for PDFs, reports, presentations, and publications</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🔍</div>
+                            <h4 style="margin: var(--space-2) 0;">SEO & Web Content</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Clean meta descriptions, prepare content for CMS, optimize text</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Tips -->
+                <section>
+                    <h2>Professional Text Cleaning Tips</h2>
+                    
+                    <div class="pro-tip">
+                        <p><strong>💡 Tip:</strong> <strong>Start with all options enabled</strong> - Apply all cleaning options first, then selectively disable ones that might be removing needed formatting.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📊 Tip:</strong> <strong>Check statistics</strong> - The before/after statistics help you understand how much cleanup was needed and guide future cleaning decisions.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔤 Tip:</strong> <strong>Preserve intentional formatting</strong> - For code or structured text, be careful with "Remove Empty Lines" as it might remove intentional blank lines for readability.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📝 Tip:</strong> <strong>Clean in stages</strong> - For complex cleaning tasks, run the tool multiple times with different settings to achieve optimal results.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>💾 Tip:</strong> <strong>Keep originals</strong> - Always save original text before cleaning, especially when dealing with important documents or data.</p>
+                    </div>
+                </section>
+
+                <!-- Comparison Table -->
+                <section>
+                    <h2>Text Cleaning Options Explained</h2>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>What It Does</th>
+                                <th>Best For</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Remove Extra Spaces</strong></td>
+                                <td>Converts multiple spaces to single spaces</td>
+                                <td>Copied text, OCR output, formatted documents</td>
+                                <td>"Hello&nbsp;&nbsp;&nbsp;World" → "Hello World"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Remove Empty Lines</strong></td>
+                                <td>Deletes consecutive blank lines</td>
+                                <td>Cleaning up copied content, reducing file size</td>
+                                <td>Reduces 5 empty lines to 1-2 as needed</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Trim Lines</strong></td>
+                                <td>Removes spaces from start/end of each line</td>
+                                <td>Code formatting, data cleaning, CSV preparation</td>
+                                <td>"&nbsp;text&nbsp;" → "text"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Remove Special Characters</strong></td>
+                                <td>Cleans non-standard/invisible characters</td>
+                                <td>Data import/export, fixing encoding issues</td>
+                                <td>Removes �,零宽空格, other invisible chars</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Will text cleaning change my content's meaning?</h3>
+                        <p>Text cleaning only affects formatting—spaces, line breaks, and special characters. The actual words and sentences remain unchanged. Always review cleaned text to ensure it meets your needs.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I clean code or programming files?</h3>
+                        <p>Yes, but be careful with "Remove Empty Lines" as code often uses blank lines for readability. "Remove Extra Spaces" and "Trim Lines" work well for cleaning up code formatting.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Does the tool work with non-English text?</h3>
+                        <p>Yes! The tool handles Unicode text including accented characters, Cyrillic, Chinese, Japanese, Arabic, and other writing systems. Special character removal focuses on invisible/non-standard characters.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is there a size limit for text cleaning?</h3>
+                        <p>You can clean very large texts (millions of characters). Performance depends on your device. For extremely large documents, consider cleaning in sections.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I undo cleaning if I make a mistake?</h3>
+                        <p>The original text remains in the input area until you close the browser tab or click "Reset". You can always re-clean with different settings. For important texts, save the original first.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complete Text Processing Suite</h2>
+                    <p>Enhance your text workflow with these complementary tools:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/case-converter.html">🔠 Case Converter</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Convert text between UPPERCASE, lowercase, and Title Case</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/word-counter.html">📊 Word Counter</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Count words, characters, sentences, and analyze text</p>
+                        </div>
+                        
+                        <!-- Removed two empty gray frames for non-existent tools -->
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Transform Messy Text into Clean Content</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Clean up text instantly with our powerful Text Cleaner. Remove extra spaces, empty lines, and special characters—all processed locally in your browser for complete privacy.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/text-cleaner.html" class="btn btn-primary btn-lg">🧹 Clean Text Now</a>
+                    <a href="../tools/word-counter.html" class="btn btn-secondary btn-lg">Count Words & Characters</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Local processing • No file uploads • Multiple cleaning options • Instant results • No sign-up
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Text Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/text-cleaner.html">Text Cleaner</a></li>
+                        <li><a href="../tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="../tools/case-converter.html">Case Converter</a></li>
+                        <!-- Text Reverser does not exist, so remove this link -->
+                        <!-- URL Encoder does not exist, so remove this link -->
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

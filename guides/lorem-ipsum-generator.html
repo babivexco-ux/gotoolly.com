@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master the art of placeholder text generation for design and development. Learn how to use Lorem Ipsum effectively in web design, UX testing, and content prototyping.">
+    <meta name="keywords" content="lorem ipsum generator, placeholder text, dummy text, design mockups, web development, content prototyping, UX testing">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><text x="10" y="30" font-family="serif" font-size="20">Lorem</text><text x="60" y="55" font-family="serif" font-size="18">ipsum</text><text x="25" y="80" font-family="serif" font-size="16">dolor</text></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .use-case-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .use-case-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #7c3aed;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .text-example {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            border-left: 4px solid #7c3aed;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+        
+        .format-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .format-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .format-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pro-tip {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 4px solid #7c3aed;
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .history-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(91, 33, 182, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .format-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Lorem Ipsum Generator: Complete Guide 2026</h1>
+                <p class="page-description">
+                    Master the art of placeholder text generation for design and development. Learn how to use Lorem Ipsum effectively in web design, UX testing, content prototyping, and more.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/lorem-ipsum-generator.html" class="btn btn-primary btn-lg">📝 Generate Lorem Ipsum</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    Customizable output • Multiple formats • Instant generation
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why Lorem Ipsum is Essential for Design & Development</h2>
+                    <p>
+                        Lorem Ipsum has been the industry standard placeholder text since the 1500s. It allows designers and developers to focus on layout and design without being distracted by readable content. Modern applications include:
+                    </p>
+                    
+                    <div class="use-cases-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🎨</div>
+                            <h3 style="margin-top: 0;">Web Design Mockups</h3>
+                            <p>Test layouts, typography, and spacing with realistic text blocks that mimic real content proportions.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📱</div>
+                            <h3 style="margin-top: 0;">App Prototyping</h3>
+                            <p>Fill UI components with placeholder text to evaluate information hierarchy and user flow.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📊</div>
+                            <h3 style="margin-top: 0;">Content Strategy</h3>
+                            <p>Visualize content placement and structure before final content is written and approved.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🧪</div>
+                            <h3 style="margin-top: 0;">User Testing</h3>
+                            <p>Conduct usability tests with realistic text content that doesn't bias users with meaningful words.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">💻</div>
+                            <h3 style="margin-top: 0;">Development Testing</h3>
+                            <p>Test database fields, text rendering, and responsive design with variable-length content.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📄</div>
+                            <h3 style="margin-top: 0;">Document Templates</h3>
+                            <p>Create templates for reports, presentations, and documents with realistic text placeholders.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History Section -->
+                <section>
+                    <div class="history-box">
+                        <h2 style="margin-top: 0;">The History of Lorem Ipsum</h2>
+                        <p>
+                            <strong>Lorem Ipsum</strong> is derived from Cicero's 45 BC philosophical work "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil). The standard passage used today is:
+                        </p>
+                        <p style="font-style: italic; color: var(--color-text-light);">
+                            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                        </p>
+                        <p>
+                            Which translates to: <em>"Nor is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain..."</em>
+                        </p>
+                        <p>
+                            The text has been scrambled and modified over centuries to create the standard placeholder text we use today in design and typesetting.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Generate Perfect Lorem Ipsum Text</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Choose Your Text Format</h3>
+                                <p>Select between <strong>Paragraphs</strong> or <strong>Sentences</strong>. Paragraphs create longer, flowing text blocks ideal for article layouts. Sentences generate shorter snippets perfect for UI components and captions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Specify Quantity</h3>
+                                <p>Enter the number of paragraphs or sentences you need. For most design mockups, 3-5 paragraphs provide a good content flow. For UI testing, 10-20 sentences cover various interface elements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Choose Classic Start (Optional)</h3>
+                                <p>Enable "Start with 'Lorem ipsum'" to begin your text with the traditional opening words. This maintains the authentic Lorem Ipsum experience while generating custom-length content.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Generate Your Text</h3>
+                                <p>Click "Generate" to create your Lorem Ipsum text. The generator uses a scrambled version of Cicero's work to produce natural-looking Latin text with realistic word and sentence lengths.</p>
+                                
+                                <div class="text-example">
+                                    <strong>Example Output (2 paragraphs):</strong><br><br>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Copy & Implement</h3>
+                                <p>Use the "Copy" button to copy your generated text to clipboard. Paste it directly into your design software, code editor, or content management system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Format Comparison -->
+                <section>
+                    <h2>When to Use Different Text Formats</h2>
+                    
+                    <div class="format-comparison">
+                        <div class="format-card">
+                            <div class="format-icon">📄</div>
+                            <h4 style="margin: var(--space-2) 0;">Paragraphs</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>Best for:</strong> Articles, blog posts, long-form content, documentation, reports</p>
+                        </div>
+                        
+                        <div class="format-card">
+                            <div class="format-icon">💬</div>
+                            <h4 style="margin: var(--space-2) 0;">Sentences</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>Best for:</strong> UI text, product descriptions, social media posts, captions, labels</p>
+                        </div>
+                        
+                        <div class="format-card">
+                            <div class="format-icon">🔤</div>
+                            <h4 style="margin: var(--space-2) 0;">Words</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>Best for:</strong> Headlines, titles, tags, metadata, search results</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Tips -->
+                <section>
+                    <h2>Professional Tips for Using Lorem Ipsum</h2>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🎨 Tip:</strong> <strong>Test typography hierarchy</strong> - Use different text lengths to see how headlines, subheadings, and body text work together visually.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📱 Tip:</strong> <strong>Responsive design testing</strong> - Generate both short and long text blocks to test how your design adapts to different content lengths on various devices.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>👁️ Tip:</strong> <strong>Focus on layout</strong> - The scrambled Latin text helps stakeholders focus on design elements rather than getting distracted by content meaning.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📊 Tip:</strong> <strong>Realistic content simulation</strong> - Generate text that matches your expected word counts to accurately test space requirements and pagination.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔄 Tip:</strong> <strong>Iterative design</strong> - Use placeholder text in early design phases, gradually replacing it with actual content as the project progresses.</p>
+                    </div>
+                </section>
+
+                <!-- Modern Alternatives -->
+                <section>
+                    <h2>Modern Alternatives to Lorem Ipsum</h2>
+                    <p>While Lorem Ipsum remains popular, modern design sometimes calls for more contemporary placeholder text:</p>
+                    
+                    <ul style="margin: var(--space-4) 0; padding-left: var(--space-6);">
+                        <li><strong>Hipster Ipsum:</strong> "Cold-pressed raw denim vexillologist twee" - Uses modern hipster vocabulary</li>
+                        <li><strong>Corporate Ipsum:</strong> "Leverage agile frameworks to provide a robust synopsis" - Business buzzword generator</li>
+                        <li><strong>Bacon Ipsum:</strong> "Bacon ipsum dolor amet pork belly tri-tip sausage" - Meat-themed placeholder text</li>
+                        <li><strong>Cat Ipsum:</strong> "Chase ball of string eat plants, meow, and throw up because I ate plants" - Cat-themed fun text</li>
+                        <li><strong>Cupcake Ipsum:</strong> "Cupcake ipsum dolor sit amet chocolate bar pastry" - Dessert-themed placeholder</li>
+                    </ul>
+                    
+                    <p>Our generator focuses on classic Lorem Ipsum, but understanding these alternatives helps you choose the right placeholder for your project's tone.</p>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Why not use real text instead of Lorem Ipsum?</h3>
+                        <p>Real text can distract stakeholders from design elements. Readers naturally try to understand meaningful content, which can derail design reviews. Lorem Ipsum provides realistic text proportions without semantic meaning.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is Lorem Ipsum still relevant in modern design?</h3>
+                        <p>Absolutely. While new alternatives exist, Lorem Ipsum remains the industry standard. Its scrambled Latin provides perfect word length variation and natural-looking text flow that mimics real content.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How much Lorem Ipsum should I use in mockups?</h3>
+                        <p>Use text amounts that match your final content expectations. For blog posts, generate 3-5 paragraphs. For product pages, mix paragraphs with bullet points. For dashboards, use short sentences and labels.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I customize the Lorem Ipsum text?</h3>
+                        <p>Our generator offers paragraph/sentence selection, quantity control, and classic start options. For highly customized needs, consider using specific word generators or writing your own placeholder text.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Should clients see Lorem Ipsum in final designs?</h3>
+                        <p>Lorem Ipsum is for internal design and development only. Client presentations should use actual content or clearly marked placeholder text with explanations of what will go there.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complementary Design & Development Tools</h2>
+                    <p>Enhance your workflow with these related tools:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/index.html">🖼️ Placeholder Image Generator</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Generate placeholder images in any size for your mockups (see all tools)</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/word-counter.html">📊 Word Counter</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Analyze text length and word counts for content planning</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Generate Perfect Placeholder Text Instantly</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Create custom Lorem Ipsum text for your design projects. No more copying from random websites—generate exactly what you need with our easy-to-use tool.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/lorem-ipsum-generator.html" class="btn btn-primary btn-lg">📝 Generate Text Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Customizable output • Multiple formats • Instant generation • No sign-up
+                </p>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Design Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/lorem-ipsum-generator.html">Lorem Ipsum Generator</a></li>
+                        <li><a href="../tools/index.html">Placeholder Image Generator</a></li>
+                        <li><a href="../tools/index.html">Color Picker</a></li>
+                        <li><a href="../tools/index.html">CSS Generator</a></li>
+                        <li><a href="../tools/favicon-generator.html">Favicon Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

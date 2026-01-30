@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator - Generate Placeholder Text | GoToolly</title>
+    <meta name="description" content="Generate placeholder text for design mockups and development. Customize paragraph, sentence, or word count for your projects.">
+    <meta name="keywords" content="lorem ipsum generator, placeholder text, dummy text generator, filler text, design mockup">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <style>
+        /* Tool-specific button layout */
+        .tool-actions {
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+            margin-top: var(--space-4);
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Lorem Ipsum Generator</h1>
+                <p class="page-description">
+                    Generate placeholder text for design mockups and development prototypes. Create paragraph, sentence, or word-based content with customizable quantities.
+                </p>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-interface">
+                    <div class="tool-header">
+                        <h2>Generate Placeholder Text</h2>
+                        <p>Create Lorem Ipsum text for your projects</p>
+                    </div>
+                    
+                    <div class="generator-options">
+                        <div class="option-group">
+                            <label for="text-type">Type:</label>
+                            <select id="text-type">
+                                <option value="paragraphs">Paragraphs</option>
+                                <option value="sentences">Sentences</option>
+                                <option value="words">Words</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" min="1" max="100" value="5">
+                        </div>
+                        
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="start-with-lorem" checked>
+                            Start with "Lorem ipsum dolor sit amet"
+                        </label>
+                    </div>
+                    
+                    <div class="tool-actions">
+                        <button id="generate-btn" class="btn btn-primary btn-lg">Generate Text</button>
+                        <button id="reset-btn" class="btn btn-secondary">Reset</button>
+                    </div>
+                    
+                    <div id="result-area" class="result-area" style="display:none;">
+                        <h3>Generated Text</h3>
+                        <div id="result-text" class="result-box"></div>
+                        <button id="copy-btn" class="btn btn-primary btn-sm">Copy Text</button>
+                    </div>
+                </div>
+                
+                <div class="tool-sidebar">
+                    <div class="card">
+                        <h3>How It Works</h3>
+                        <ol>
+                            <li>Choose text type (paragraphs, sentences, or words)</li>
+                            <li>Set the quantity needed</li>
+                            <li>Toggle starting phrase if desired</li>
+                            <li>Click Generate Text</li>
+                            <li>Copy to clipboard</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Text Types</h3>
+                        <ul>
+                            <li><strong>Paragraphs:</strong> Full paragraphs of text</li>
+                            <li><strong>Sentences:</strong> Individual sentences</li>
+                            <li><strong>Words:</strong> Single words separated by spaces</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Design mockups and prototypes</li>
+                            <li>Website development testing</li>
+                            <li>Template layouts</li>
+                            <li>Content planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/lorem-ipsum-generator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

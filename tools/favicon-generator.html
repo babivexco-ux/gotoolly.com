@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator - Professional-Quality Favicons | GoToolly</title>
+    <meta name="description" content="Generate professional-quality favicons instantly. No accounts, no limits, no bloat. Text, emoji, or image favicons with multiple formats.">
+    <meta name="keywords" content="favicon generator, favicon maker, website favicon, create favicon, ico generator, web standard">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        .tabs-container {
+            display: flex;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            border-bottom: 2px solid var(--color-border);
+        }
+        
+        .tab-button {
+            padding: var(--space-3) var(--space-4);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: var(--weight-medium);
+            color: var(--color-text-light);
+            transition: all var(--transition-fast);
+            margin-bottom: -2px;
+        }
+        
+        .tab-button:hover {
+            color: var(--color-text);
+        }
+        
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .preview-container {
+            text-align: center;
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            /* Smooth opacity transition when switching tabs */
+            transition: opacity 120ms ease-in-out;
+            opacity: 1;
+        }
+        
+        .preview-canvas-wrapper {
+            margin: var(--space-4) 0;
+            display: inline-block;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 900px) {
+            .favicon-layout { grid-template-columns: 1fr; gap: var(--space-3); }
+            #preview-canvas { width: 150px; height: 150px; }
+            .tabs-container { gap: var(--space-1); }
+            .tab-button { padding: var(--space-2) var(--space-3); }
+        }
+        
+        #preview-canvas {
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            width: 256px;
+            height: 256px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .favicon-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: var(--space-4);
+            align-items: start;
+        }
+        
+        @media (max-width: 900px) {
+            .favicon-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .note {
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+            margin-top: var(--space-2);
+            font-style: italic;
+        }
+        
+        /* Info Cards - Custom Styles */
+        .info-card {
+            padding: var(--space-4);
+            font-size: 1rem;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .info-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-3);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .info-card ul,
+        .info-card ol {
+            margin: 0;
+            padding-left: var(--space-4);
+            line-height: 1.8;
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+        
+        .info-card i {
+            color: var(--color-primary);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                    <a href="../index.html" class="logo">
+                        <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                        <span class="logo-text">GoToolly</span>
+                    </a>
+                
+                <nav class="main-nav">
+                        <a href="../index.html" class="nav-link">Home</a>
+                        <a href="index.html" class="nav-link active">Tools</a>
+                        <a href="../../guides/index.html" class="nav-link">Guides</a>
+                        <a href="../../about" class="nav-link">About</a>
+                        <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                        <a href="../index.html" class="nav-link">Home</a>
+                        <a href="index.html" class="nav-link active">Tools</a>
+                        <a href="../../guides/index.html" class="nav-link">Guides</a>
+                        <a href="../../about" class="nav-link">About</a>
+                        <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Favicon Generator</h1>
+                <p class="page-description">
+                    Professional-quality favicons, zero cost, zero accounts, zero bloat. 
+                    Generate web-standard compliant favicons in seconds.
+                </p>
+            </div>
+
+            <!-- Tool Layout - Compact Horizontal -->
+            <div class="favicon-layout">
+                <!-- Left: Controls -->
+                <div class="tool-interface" id="controls-panel" style="padding: var(--space-4); height: 100%; min-height: 420px;">
+                    <!-- Tabs -->
+                    <div class="tabs-container" style="margin-bottom: var(--space-4);">
+                        <button class="tab-button active" data-tab="text">Text</button>
+                        <button class="tab-button" data-tab="emoji">Emoji</button>
+                        <button class="tab-button" data-tab="image">Image</button>
+                    </div>
+
+                    <!-- TEXT MODE -->
+                    <div id="text" class="tab-content active">
+                        <div class="controls-grid">
+                            <div class="form-group">
+                                <label for="text-input">Text <span id="char-count" style="font-weight: normal; color: var(--color-text-light);">(0/4)</span></label>
+                                <input type="text" id="text-input" class="form-control" placeholder="LOGO" maxlength="4" style="font-size: 24px; text-align: center;">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-max-chars">Max Characters</label>
+                                <select id="text-max-chars" class="form-control">
+                                    <option value="1">1 Character</option>
+                                    <option value="2">2 Characters</option>
+                                    <option value="3">3 Characters</option>
+                                    <option value="4" selected>4 Characters</option>
+                                    <option value="5">5 Characters</option>
+                                    <option value="6">6 Characters</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-bg-color">Background Color</label>
+                                <input type="color" id="text-bg-color" class="form-control" value="#2563eb">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-color">Text Color</label>
+                                <select id="text-color-mode" class="form-control">
+                                    <option value="auto">Auto (Contrast)</option>
+                                    <option value="custom">Custom Color</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="text-color-picker-group" style="display: none;">
+                                <label for="text-color-picker">Custom Text Color</label>
+                                <input type="color" id="text-color-picker" class="form-control" value="#ffffff">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-shape">Shape</label>
+                                <select id="text-shape" class="form-control">
+                                    <option value="square">Square</option>
+                                    <option value="rounded">Rounded</option>
+                                    <option value="circle">Circle</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-font-size">Font Size</label>
+                                <select id="text-font-size" class="form-control">
+                                    <option value="auto" selected>Auto (Fit Text)</option>
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-group">
+                                    <input type="checkbox" id="text-bold" class="checkbox-input" checked>
+                                    <span>Bold Text</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMOJI MODE -->
+                    <div id="emoji" class="tab-content">
+                        <div class="controls-grid">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label for="emoji-input">Choose Emoji</label>
+                                <input type="text" id="emoji-input" class="form-control" placeholder="Paste or type emoji" style="font-size: 48px; text-align: center; padding: var(--space-6);">
+                                <p class="note">💡 Emoji rendering varies by platform and device</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emoji-bg-mode">Background</label>
+                                <select id="emoji-bg-mode" class="form-control">
+                                    <option value="colored">Colored</option>
+                                    <option value="transparent">Transparent</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="emoji-bg-color-group">
+                                <label for="emoji-bg-color">Background Color</label>
+                                <input type="color" id="emoji-bg-color" class="form-control" value="#2563eb">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMAGE MODE -->
+                    <div id="image" class="tab-content">
+                        <div class="controls-grid">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label for="image-input">Upload Image</label>
+                                <input type="file" id="image-input" accept="image/*" class="form-control">
+                                <p class="note">Square images work best. PNG or JPG, max 10 MB</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-fit">Fit Mode</label>
+                                <select id="image-fit" class="form-control">
+                                    <option value="cover">Cover (crop to fit)</option>
+                                    <option value="contain">Contain (scale with padding)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-bg-color">Padding Color</label>
+                                <input type="color" id="image-bg-color" class="form-control" value="#ffffff">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info badge -->
+                    <div style="padding: var(--space-3); background-color: var(--color-surface); border-radius: var(--radius-md); font-size: var(--text-xs); color: var(--color-text-light); text-align: center;">
+                        ✓ Instant preview • ✓ Web standard compliant • ✓ Privacy first • ✓ No accounts
+                    </div>
+                </div>
+                
+                <!-- Right: Preview Only -->
+                <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <!-- Preview -->
+                    <div class="preview-container" id="preview-container" style="display: none; margin: 0; padding: var(--space-4); height: 100%; min-height: 420px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #2563eb, #60a5fa); border-radius: 8px 8px 0 0;"></div>
+                        <h3 style="margin-bottom: var(--space-3); font-size: var(--text-base);">Preview</h3>
+                        <div class="preview-canvas-wrapper" style="margin: 0;">
+                            <canvas id="preview-canvas" width="256" height="256" style="width: 180px; height: 180px;"></canvas>
+                        </div>
+                        <div class="download-buttons" style="margin-top: 40px; width: 100%;">
+                            <button id="download-btn" class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-download"></i> Download Bundle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Info Cards - Horizontal at Bottom -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-6);">
+                <div class="card" style="padding: var(--space-4); font-size: 1rem; min-height: 180px; display: flex; flex-direction: column; justify-content: flex-start;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: var(--space-3); font-weight: 600;"><i class="fas fa-box-open" style="color: var(--color-primary); margin-right: 8px;"></i>What You Get</h4>
+                    <ul style="margin: 0; padding-left: var(--space-4); line-height: 1.8; font-size: 1rem;">
+                        <li><strong>favicon.ico</strong> - Classic</li>
+                        <li><strong>favicon-16x16.png</strong> - Tiny</li>
+                        <li><strong>favicon-32x32.png</strong> - Normal</li>
+                        <li><strong>apple-touch-icon.png</strong> - iOS</li>
+                        <li><strong>site.webmanifest</strong> - PWA</li>
+                    </ul>
+                </div>
+                
+                <div class="card" style="padding: var(--space-4); font-size: 1rem; min-height: 180px; display: flex; flex-direction: column; justify-content: flex-start;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: var(--space-3); font-weight: 600;"><i class="fas fa-list-ol" style="color: var(--color-primary); margin-right: 8px;"></i>How to Use</h4>
+                    <ol style="margin: 0; padding-left: var(--space-4); line-height: 1.8; font-size: 1rem;">
+                        <li>Choose mode (text/emoji/image)</li>
+                        <li>Customize appearance</li>
+                        <li>Download & follow README</li>
+                    </ol>
+                </div>
+
+                <div class="card" style="padding: var(--space-4); font-size: 1rem; min-height: 180px; display: flex; flex-direction: column; justify-content: flex-start;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: var(--space-3); font-weight: 600;"><i class="fas fa-lightbulb" style="color: var(--color-primary); margin-right: 8px;"></i>Pro Tips</h4>
+                    <ul style="margin: 0; padding-left: var(--space-4); line-height: 1.8; font-size: 1rem;">
+                        <li>1-4 characters work best</li>
+                        <li>Use high contrast colors</li>
+                        <li>Test on multiple devices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/favicon-generator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

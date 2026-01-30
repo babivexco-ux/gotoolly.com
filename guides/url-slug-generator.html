@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Slug Generator: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master URL slug creation for SEO. Learn how to convert titles into clean, SEO-friendly URL slugs that improve rankings, readability, and user experience.">
+    <meta name="keywords" content="URL slug generator, SEO-friendly URLs, URL optimization, slug creation, clean URLs, website slug, URL structure, SEO slug guide">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><path d="M10,30 L90,30" stroke="white" stroke-width="2"/><path d="M10,50 L90,50" stroke="white" stroke-width="2"/><path d="M10,70 L90,70" stroke="white" stroke-width="2"/></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .slug-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .benefit-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #f97316;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .example-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .example-bad {
+            border-top: 4px solid #ef4444;
+        }
+        
+        .example-good {
+            border-top: 4px solid #10b981;
+        }
+        
+        .example-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pro-tip {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 4px solid #f97316;
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .seo-impact-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(234, 88, 12, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        
+        .slug-comparison {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            margin: var(--space-4) 0;
+            flex-wrap: wrap;
+        }
+        
+        .slug-bad, .slug-good {
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-sm);
+        }
+        
+        .slug-bad {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+        
+        .slug-good {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #86efac;
+        }
+        
+        .slug-arrow {
+            font-size: 1.5rem;
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .slug-benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slug-comparison {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .slug-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="index.html" class="nav-link active">Guides</a>
+                    <a href="../about" class="nav-link">About</a>
+                    <a href="../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>URL Slug Generator: Complete Guide 2026</h1>
+                <p class="page-description">
+                    Master URL slug creation for maximum SEO impact. Learn how to convert titles into clean, readable, SEO-friendly URL slugs that improve rankings, click-through rates, and user experience.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/url-slug-generator.html" class="btn btn-primary btn-lg">🔗 Generate URL Slugs</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    Instant generation • SEO optimized • Multiple options • No sign-up
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why URL Slugs Matter for SEO</h2>
+                    <p>
+                        URL slugs are the last part of a URL that identifies a specific page. Well-crafted slugs improve SEO, user experience, and click-through rates. Search engines use slugs to understand page content, while users read them to predict page content.
+                    </p>
+                    
+                    <div class="slug-benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🔍</div>
+                            <h3 style="margin-top: 0;">SEO Optimization</h3>
+                            <p>Search engines analyze URL slugs for relevance. Clean, keyword-rich slugs can improve rankings by 5-10% compared to generic or poorly structured slugs.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">👁️</div>
+                            <h3 style="margin-top: 0;">User Experience</h3>
+                            <p>Readable URLs help users understand page content before clicking. Clear slugs increase click-through rates by 15-25% in search results and social media.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📈</div>
+                            <h3 style="margin-top: 0;">Professional Appearance</h3>
+                            <p>Clean URLs appear more professional and trustworthy. They're easier to share, remember, and type compared to messy, parameter-heavy URLs.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SEO Impact -->
+                <section>
+                    <div class="seo-impact-box">
+                        <h2 style="margin-top: 0;">📊 SEO Impact of URL Slugs</h2>
+                        <p><strong>Search Engine Ranking Factor:</strong> Google's John Mueller confirmed that URLs are a "very small" ranking factor, but clean slugs still matter for user experience and CTR.</p>
+                        <p><strong>Click-Through Rates:</strong> URLs with clear, descriptive slugs see 15-45% higher CTR in search results compared to generic slugs.</p>
+                        <p><strong>Social Sharing:</strong> Clean URLs are more likely to be shared on social media, improving referral traffic and domain authority.</p>
+                        <p><strong>User Trust:</strong> Professional-looking URLs increase user trust and reduce bounce rates by 8-12%.</p>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Create Perfect URL Slugs</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Input Your Title or Text</h3>
+                                <p>Open our <a href="../tools/url-slug-generator.html">URL Slug Generator tool</a> and enter your page title or text. For example: "How to Create SEO-Friendly URLs in 2026" or "Best Practices for Website Optimization".</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Configure Slug Options</h3>
+                                <p>Choose your preferred slug settings:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li><strong>Separator:</strong> Hyphens (recommended for SEO) or underscores</li>
+                                    <li><strong>Case:</strong> Convert to lowercase (standard for URLs)</li>
+                                    <li><strong>Numbers:</strong> Keep or remove numbers based on context</li>
+                                    <li><strong>Special Characters:</strong> Automatically removes non-alphanumeric characters</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Generate & Preview</h3>
+                                <p>Click "Generate Slug" to create your optimized URL slug. The tool shows the transformation process:</p>
+                                <div class="slug-comparison">
+                                    <div class="slug-bad">How to Create SEO-Friendly URLs in 2026</div>
+                                    <div class="slug-arrow">→</div>
+                                    <div class="slug-good">how-to-create-seo-friendly-urls-in-2026</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Copy & Implement</h3>
+                                <p>Use "Copy Slug" to copy the generated slug to clipboard. Paste it into your CMS, website code, or wherever you need a clean URL identifier.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Examples -->
+                <section>
+                    <h2>Good vs. Bad URL Slugs: Examples</h2>
+                    
+                    <div class="example-grid">
+                        <div class="example-card example-bad">
+                            <div class="example-icon">❌</div>
+                            <h4 style="margin: var(--space-2) 0;">Bad Examples</h4>
+                            <p style="margin: 0; font-size: var(--text-sm); font-family: 'JetBrains Mono', monospace;">
+                                website.com/?p=12345<br>
+                                website.com/blog_post_1<br>
+                                website.com/How%20To%20Do%20Stuff<br>
+                                website.com/this-is-a-very-long-url-slug-that-goes-on-forever-and-ever<br>
+                                website.com/BLOG-POST-UPPERCASE
+                            </p>
+                        </div>
+                        
+                        <div class="example-card example-good">
+                            <div class="example-icon">✅</div>
+                            <h4 style="margin: var(--space-2) 0;">Good Examples</h4>
+                            <p style="margin: 0; font-size: var(--text-sm); font-family: 'JetBrains Mono', monospace;">
+                                website.com/seo-friendly-urls<br>
+                                website.com/blog/how-to-create-slugs<br>
+                                website.com/2026/seo-best-practices<br>
+                                website.com/quick-seo-tips<br>
+                                website.com/url-structure-guide
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Tips -->
+                <section>
+                    <h2>Professional Slug Creation Tips</h2>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔗 Tip:</strong> <strong>Use hyphens, not underscores</strong> - Search engines treat hyphens as word separators (how-to-guide) but treats underscores as connectors (how_to_guide). Hyphens are better for SEO.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📏 Tip:</strong> <strong>Keep slugs concise</strong> - Aim for 3-5 words (50-60 characters). Longer slugs get truncated in search results and are harder to read.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔤 Tip:</strong> <strong>Always use lowercase</strong> - URLs are case-sensitive. Using lowercase prevents duplicate content issues and ensures consistency.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🎯 Tip:</strong> <strong>Include primary keywords</strong> - Place your most important keywords near the beginning of the slug for maximum SEO impact.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📅 Tip:</strong> <strong>Consider dates for time-sensitive content</strong> - For news or time-relevant articles, include the year (2026/seo-trends) to show freshness.</p>
+                    </div>
+                </section>
+
+                <!-- Slug Structure Guidelines -->
+                <section>
+                    <h2>URL Slug Structure Guidelines</h2>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: var(--space-6) 0;">
+                        <thead>
+                            <tr style="background-color: var(--color-surface-secondary); border-bottom: 2px solid var(--color-border);">
+                                <th style="padding: var(--space-3); text-align: left;">Component</th>
+                                <th style="padding: var(--space-3); text-align: left;">Best Practice</th>
+                                <th style="padding: var(--space-3); text-align: left;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-3);"><strong>Word Separator</strong></td>
+                                <td style="padding: var(--space-3);">Hyphens (-)</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">seo-friendly-urls</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-3);"><strong>Case</strong></td>
+                                <td style="padding: var(--space-3);">Lowercase only</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">blog-post-title</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-3);"><strong>Length</strong></td>
+                                <td style="padding: var(--space-3);">3-5 words, under 60 chars</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">quick-seo-tips-2026</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-3);"><strong>Special Characters</strong></td>
+                                <td style="padding: var(--space-3);">Remove all</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">remove-these-&-%#$</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-3);"><strong>Stop Words</strong></td>
+                                <td style="padding: var(--space-3);">Remove (the, a, an, and)</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">guide-to-seo</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-3);"><strong>Numbers</strong></td>
+                                <td style="padding: var(--space-3);">Keep if relevant</td>
+                                <td style="padding: var(--space-3); font-family: 'JetBrains Mono', monospace;">top-10-seo-tools-2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Should I use hyphens or underscores in URL slugs?</h3>
+                        <p>Always use hyphens (-). Search engines treat hyphens as word separators (making "how-to-guide" two words) but treat underscores as connectors (making "how_to_guide" one word). Hyphens are the web standard for readable URLs.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How long should URL slugs be?</h3>
+                        <p>Keep slugs between 3-5 words and under 60 characters. Longer slugs get truncated in search results, social media, and browser address bars. Focus on key keywords rather than complete sentences.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Should I include dates in URL slugs?</h3>
+                        <p>Include dates (year/month) for time-sensitive content like news, trends, or annual reports. For evergreen content, avoid dates to prevent the URL from appearing outdated. Example: /2026/seo-trends (good for news), /seo-best-practices (better for guides).</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I change URL slugs after publishing?</h3>
+                        <p>You can change slugs, but always set up 301 redirects from old URLs to new ones. Changing URLs without redirects breaks links, loses SEO value, and creates 404 errors. Our tool helps you create optimal slugs from the start to avoid changes.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Should I remove stop words (the, a, an, and)?</h3>
+                        <p>Yes, remove common stop words to keep slugs concise. However, if removing a stop word changes the meaning or makes the slug confusing, keep it. "The-guide-to-seo" → "guide-to-seo" (better), but "to-be-or-not-to-be" should keep the words.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complete SEO & URL Toolkit</h2>
+                    <p>Optimize your website with these complementary tools:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/keyword-generator.html">🔍 Keyword Generator</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Generate SEO keywords for content and URL optimization</p>
+                        </div>
+                        
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Create SEO-Optimized URL Slugs Instantly</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Generate clean, readable, SEO-friendly URL slugs that improve search rankings and user experience. Perfect for blogs, e-commerce, and any website needing professional URLs.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/url-slug-generator.html" class="btn btn-primary btn-lg">🔗 Generate Slugs Now</a>
+                    <a href="/guides/keyword-generator.html" class="btn btn-secondary btn-lg">Learn Keyword Research</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Instant generation • SEO optimized • Hyphen/underscore options • No sign-up required
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>SEO Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/url-slug-generator.html">URL Slug Generator</a></li>
+                        <li><a href="../tools/keyword-generator.html">Keyword Generator</a></li>
+                        <!-- Meta Tag Generator does not exist, so remove this link -->
+                        <!-- Sitemap Generator does not exist, so remove this link -->
+                        <!-- URL Encoder does not exist, so remove this link -->
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="../about">About Us</a></li>
+                        <li><a href="../contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

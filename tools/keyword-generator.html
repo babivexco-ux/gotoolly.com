@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Generator - Find SEO Keywords | GoToolly</title>
+    <meta name="description" content="Generate SEO keywords from your topic. Find long-tail keywords, search volume, and competition data for content strategy.">
+    <meta name="keywords" content="keyword generator, SEO keywords, long-tail keywords, keyword research, keyword tool, keyword finder">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="../index.html" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Keyword Generator</h1>
+                <p class="page-description">
+                    Generate keyword ideas instantly. Find long-tail keywords, related terms, and variations for better SEO strategy and content planning.
+                </p>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-interface">
+                    <div class="tool-header">
+                        <h2>Generate Keywords</h2>
+                        <p>Enter a topic to find keyword variations</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="topic-input">Topic or Keyword</label>
+                        <input type="text" id="topic-input" class="form-input" placeholder="e.g., 'best running shoes'" >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Keyword Types</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="exact" checked>
+                                Exact match
+                            </label>
+                            <label>
+                                <input type="checkbox" name="long-tail" checked>
+                                Long-tail variations
+                            </label>
+                            <label>
+                                <input type="checkbox" name="questions" checked>
+                                Question format
+                            </label>
+                            <label>
+                                <input type="checkbox" name="modifiers" checked>
+                                Common modifiers
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn" class="btn btn-primary btn-lg">Generate Keywords</button>
+                    
+                    <div id="results-area" style="display:none;">
+                        <h3>Generated Keywords</h3>
+                        <div id="keywords-list" class="keywords-list"></div>
+                        <button id="copy-all-btn" class="btn btn-secondary">Copy All</button>
+                        <button id="reset-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+                
+                <div class="tool-sidebar">
+                    <div class="card">
+                        <h3>How It Works</h3>
+                        <ol>
+                            <li>Enter your main topic</li>
+                            <li>Select keyword types</li>
+                            <li>Get instant variations</li>
+                            <li>Copy for your research</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Keyword Types</h3>
+                        <ul>
+                            <li><strong>Exact:</strong> Exact keyword match</li>
+                            <li><strong>Long-tail:</strong> 3+ word phrases</li>
+                            <li><strong>Questions:</strong> "How to...", "Best..."</li>
+                            <li><strong>Modifiers:</strong> "Cheap", "Best", "Near me"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>SEO Tips</h3>
+                        <ul>
+                            <li>Target long-tail keywords</li>
+                            <li>Use in titles and descriptions</li>
+                            <li>Research competitor keywords</li>
+                            <li>Use keyword research tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/keyword-generator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

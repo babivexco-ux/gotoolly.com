@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Generator - Create Professional Barcodes Online | GoToolly</title>
+    <meta name="description" content="Generate professional barcodes and QR codes for free. Create Code-128, EAN-13, QR codes, Data Matrix, vCards, and more. Industry-standard barcode generator.">
+    <meta name="keywords" content="barcode generator, QR code generator, EAN barcode, UPC code, ISBN barcode, vCard QR, Data Matrix, barcode maker">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>    
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-gradient: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        }
+        
+        .barcode-generator {
+            display: grid;
+            grid-template-columns: 300px 1fr 420px;
+            gap: 30px;
+            margin-top: 30px;
+            align-items: stretch;
+        }
+        
+        /* Panel Styling */
+        .barcode-panel {
+            background: linear-gradient(145deg, #ffffff, #f9fafb);
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--panel-shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .barcode-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border-gradient);
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .panel-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f2f5;
+            position: relative;
+        }
+        
+        .panel-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--color-primary);
+        }
+        
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-title i {
+            color: var(--color-primary);
+            font-size: 18px;
+        }
+
+        /* Mobile responsiveness: stack panels for narrow viewports */
+        @media (max-width: 900px) {
+            .barcode-generator { grid-template-columns: 1fr; gap: 18px; }
+            .barcode-panel { padding: 18px; }
+            .panel-title { font-size: 1rem; }
+            .barcode-types { max-height: none; overflow: visible; }
+        }
+        
+        /* Left Panel - Barcode Types */
+        .barcode-types {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        
+        .barcode-types::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .barcode-types::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .barcode-types::-webkit-scrollbar-thumb {
+            background: var(--color-primary-light);
+            border-radius: 10px;
+        }
+        
+        .category-group {
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+        
+        .category-header {
+            padding: 16px 20px;
+            background: #f8fafc;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+        
+        .category-header:hover {
+            background: #f1f5f9;
+        }
+        
+        .category-header.active {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .category-icon {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-header.active .category-icon {
+            transform: rotate(180deg);
+        }
+        
+        .category-content {
+            display: none;
+            background: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .category-content.active {
+            display: block;
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .type-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-top: 1px solid #f1f5f9;
+            background: white;
+            color: #4b5563;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+        
+        .type-option:hover {
+            background: #f8fafc;
+            padding-left: 24px;
+        }
+        
+        .type-option.selected {
+            background: linear-gradient(90deg, #e0f2fe, #f0f9ff);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            border-left: 4px solid var(--color-primary);
+            position: relative;
+        }
+        
+        .type-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-size: 12px;
+        }
+        
+        /* Middle Panel - Data Entry */
+        .data-forms {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-container {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        .form-input, .text-area {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-smooth);
+            background: white;
+        }
+        
+        .form-input:focus, .text-area:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .text-area {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-help {
+            display: block;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        .generate-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #f0f2f5;
+            text-align: center;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, var(--color-primary), #3b82f6);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+        }
+        
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+        }
+        
+        .generate-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        .generate-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+
+        
+        /* Right Panel - Result Display */
+        .result-panel {
+            position: sticky;
+            top: 30px;
+        }
+        
+        .result-controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .control-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4b5563;
+            transition: var(--transition-smooth);
+        }
+        
+        .control-btn:hover:not(:disabled) {
+            background: #f8fafc;
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .control-btn.active {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        
+        .control-icon {
+            width: 20px;
+            height: 20px;
+            color: currentColor;
+        }
+        
+        .barcode-display {
+            height: 420px;
+            background: white;
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #6b7280;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+            padding: 30px;
+            box-sizing: border-box;
+            transition: var(--transition-smooth);
+        }
+        
+        .barcode-display.has-content {
+            border: 2px solid #e5e7eb;
+            background: linear-gradient(145deg, #ffffff, #fafafa);
+        }
+        
+        .barcode-display.loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .barcode-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+        
+        .placeholder-text {
+            padding: 30px;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+        
+        .placeholder-text i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #d1d5db;
+            display: block;
+        }
+        
+        .barcode-info {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Full-screen modal */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .fullscreen-modal.active {
+            display: flex;
+        }
+        
+        .fullscreen-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .fullscreen-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fullscreen-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #374151;
+            transition: var(--transition-smooth);
+        }
+        
+        .fullscreen-close:hover {
+            background: #f1f5f9;
+            transform: rotate(90deg);
+        }
+        
+        /* Status Messages */
+        .status-message {
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .status-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+        
+        .status-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+        
+        .status-message.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            display: block;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .barcode-generator {
+                grid-template-columns: 280px 1fr 380px;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .barcode-generator {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .result-panel {
+                position: static;
+                order: 3;
+            }
+            
+            .barcode-panel:nth-child(1) {
+                order: 1;
+            }
+            
+            .barcode-panel:nth-child(2) {
+                order: 2;
+            }
+            
+            .result-controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .generate-section {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .barcode-panel {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .result-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-btn {
+                flex-direction: row;
+                justify-content: center;
+                padding: 16px;
+            }
+            
+            .barcode-display {
+                height: 350px;
+            }
+        }
+        
+        /* Badge for popular types */
+        .popular-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Professional Barcode Generator</h1>
+                <p class="page-description">
+                    Generate industry-standard barcodes and QR codes instantly. Perfect for retail, logistics, marketing, and business applications.
+                </p>
+            </div>
+
+            <div class="barcode-generator">
+                <!-- Panel 1: Left Panel (Barcode Type Selection) -->
+                <div class="barcode-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fas fa-barcode"></i> Barcode Type</h2>
+                    </div>
+                    <div class="barcode-types">
+                        <!-- Linear Codes -->
+                        <div class="category-group">
+                            <button class="category-header active" data-category="linear">
+                                <span>Linear Codes</span>
+                                <svg class="category-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="category-content active" id="linear-content">
+                                <button class="type-option" data-type="code128">
+                                    <span class="type-icon"><i class="fas fa-wave-square"></i></span>
+                                    <span>Code-128 <span class="popular-badge">POPULAR</span></span>
+                                </button>
+                                <button class="type-option" data-type="code39">
+                                    <span class="type-icon"><i class="fas fa-bars"></i></span>
+                                    <span>Code-39</span>
+                                </button>
+                                <button class="type-option" data-type="code93">
+                                    <span class="type-icon"><i class="fas fa-stream"></i></span>
+                                    <span>Code-93</span>
+                                </button>
+                                <button class="type-option" data-type="itf14">
+                                    <span class="type-icon"><i class="fas fa-box"></i></span>
+                                    <span>ITF-14</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 2D Codes -->
+                        <div class="category-group">
+                            <button class="category-header" data-category="2d">
+                                <span>2D Codes</span>
+                                <svg class="category-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="category-content" id="2d-content">
+                                <button class="type-option selected" data-type="qrcode">
+                                    <span class="type-icon"><i class="fas fa-qrcode"></i></span>
+                                    <span>QR Code <span class="popular-badge">MOST USED</span></span>
+                                </button>
+                                <button class="type-option" data-type="datamatrix">
+                                    <span class="type-icon"><i class="fas fa-th"></i></span>
+                                    <span>Data Matrix</span>
+                                </button>
+                                <button class="type-option" data-type="pdf417">
+                                    <span class="type-icon"><i class="fas fa-layer-group"></i></span>
+                                    <span>PDF417</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- EAN/UPC -->
+                        <div class="category-group">
+                            <button class="category-header" data-category="ean">
+                                <span>EAN/UPC</span>
+                                <svg class="category-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="category-content" id="ean-content">
+                                <button class="type-option" data-type="ean13">
+                                    <span class="type-icon"><i class="fas fa-shopping-cart"></i></span>
+                                    <span>EAN-13</span>
+                                </button>
+                                <button class="type-option" data-type="ean8">
+                                    <span class="type-icon"><i class="fas fa-tag"></i></span>
+                                    <span>EAN-8</span>
+                                </button>
+                                <button class="type-option" data-type="upca">
+                                    <span class="type-icon"><i class="fas fa-store"></i></span>
+                                    <span>UPC-A</span>
+                                </button>
+                                <button class="type-option" data-type="upce">
+                                    <span class="type-icon"><i class="fas fa-compress-alt"></i></span>
+                                    <span>UPC-E</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- ISBN Codes -->
+                        <div class="category-group">
+                            <button class="category-header" data-category="isbn">
+                                <span>ISBN Codes</span>
+                                <svg class="category-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="category-content" id="isbn-content">
+                                <button class="type-option" data-type="isbn13">
+                                    <span class="type-icon"><i class="fas fa-book"></i></span>
+                                    <span>ISBN-13</span>
+                                </button>
+                                <button class="type-option" data-type="isbn10">
+                                    <span class="type-icon"><i class="fas fa-book-open"></i></span>
+                                    <span>ISBN-10</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Cards -->
+                        <div class="category-group">
+                            <button class="category-header" data-category="business">
+                                <span>Business Cards</span>
+                                <svg class="category-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="category-content" id="business-content">
+                                <button class="type-option" data-type="vcard">
+                                    <span class="type-icon"><i class="fas fa-address-card"></i></span>
+                                    <span>QR Code vCard</span>
+                                </button>
+                                <button class="type-option" data-type="mecard">
+                                    <span class="type-icon"><i class="fas fa-id-card"></i></span>
+                                    <span>QR Code MeCard</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="status-message info" id="type-help">
+                        Select a barcode type from the categories above. Each type has specific data requirements.
+                    </div>
+                </div>
+
+                <!-- Panel 2: Middle Panel (Data Entry) -->
+                <div class="barcode-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fas fa-keyboard"></i> Data Entry</h2>
+                    </div>
+                    <div class="data-forms">
+                        <!-- Generic Content Form -->
+                        <div class="form-container active" id="form-generic">
+                            <div class="form-group">
+                                <label for="content"><i class="fas fa-align-left"></i> Content</label>
+                                <textarea id="content" class="text-area" placeholder="Enter URL, text, or any content..." rows="4">https://www.gotoolly.com</textarea>
+                                <span class="form-help">For QR Codes: Enter URLs, text, or contact information</span>
+                            </div>
+                            
+                            <div class="generate-section">
+                                <button type="button" class="generate-btn">
+                                    <i class="fas fa-bolt"></i> Generate Barcode
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Card vCard Form -->
+                        <div class="form-container" id="form-vcard">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                                    <input type="text" id="firstName" class="form-input" placeholder="John" value="John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                                    <input type="text" id="lastName" class="form-input" placeholder="Doe" value="Doe">
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="phone"><i class="fas fa-phone"></i> Phone</label>
+                                    <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 123-4567" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                                    <input type="email" id="email" class="form-input" placeholder="john@company.com" value="john@example.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="company"><i class="fas fa-building"></i> Company</label>
+                                <input type="text" id="company" class="form-input" placeholder="Company Name" value="GoToolly Inc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="title"><i class="fas fa-briefcase"></i> Job Title</label>
+                                <input type="text" id="title" class="form-input" placeholder="Job Title" value="Software Developer">
+                            </div>
+                            <div class="generate-section">
+                                <button type="button" class="generate-btn">
+                                    <i class="fas fa-bolt"></i> Generate Barcode
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- EAN/UPC Form -->
+                        <div class="form-container" id="form-ean">
+                            <div class="form-group">
+                                <label for="numericCode"><i class="fas fa-hashtag"></i> Numeric Code</label>
+                                <input type="text" id="numericCode" class="form-input" placeholder="Enter numeric code..." pattern="[0-9]*" value="5901234123457">
+                                <span class="form-help" id="ean-help">EAN-13 requires exactly 13 digits (12 data + 1 check digit)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="productName"><i class="fas fa-cube"></i> Product Name (Optional)</label>
+                                <input type="text" id="productName" class="form-input" placeholder="Product name for reference">
+                            </div>
+                            <div class="generate-section">
+                                <button type="button" class="generate-btn">
+                                    <i class="fas fa-bolt"></i> Generate Barcode
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- ISBN Form -->
+                        <div class="form-container" id="form-isbn">
+                            <div class="form-group">
+                                <label for="isbnNumber"><i class="fas fa-book"></i> ISBN Number</label>
+                                <input type="text" id="isbnNumber" class="form-input" placeholder="978-3-16-148410-0" value="9783161484100">
+                                <span class="form-help">Enter ISBN with or without hyphens. ISBN-13 requires 13 digits.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookTitle"><i class="fas fa-heading"></i> Book Title (Optional)</label>
+                                <input type="text" id="bookTitle" class="form-input" placeholder="Book title for reference">
+                            </div>
+                            <div class="generate-section">
+                                <button type="button" class="generate-btn">
+                                    <i class="fas fa-bolt"></i> Generate Barcode
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="form-status" class="status-message"></div>
+                </div>
+
+                <!-- Panel 3: Right Panel (Result Display) -->
+                <div class="barcode-panel result-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fas fa-eye"></i> Result</h2>
+                    </div>
+                    
+                    <div class="result-controls">
+                        <button class="control-btn" id="copyBtn" disabled>
+                            <i class="fas fa-copy control-icon"></i>
+                            <span>Copy</span>
+                        </button>
+                        
+                        <button class="control-btn" id="viewBtn" disabled>
+                            <i class="fas fa-expand control-icon"></i>
+                            <span>View</span>
+                        </button>
+                        
+                        <button class="control-btn" id="downloadBtn" disabled>
+                            <i class="fas fa-download control-icon"></i>
+                            <span>Download</span>
+                        </button>
+                        
+                        <button class="control-btn" id="clearBtn">
+                            <i class="fas fa-trash control-icon"></i>
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                    
+                    <div class="barcode-display" id="barcodeDisplay">
+                        <div class="placeholder-text">
+                            <i class="fas fa-barcode"></i>
+                            <h3>No Barcode Generated</h3>
+                            <p>Select a barcode type, enter your data, and click "Generate Barcode" to create your first barcode.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="barcode-info" id="barcodeInfo"></div>
+                    
+                    <div id="result-status" class="status-message"></div>
+                </div>
+            </div>
+            
+            <!-- Fullscreen Modal -->
+            <div class="fullscreen-modal" id="fullscreenModal">
+                <div class="fullscreen-content">
+                    <button class="fullscreen-close" id="fullscreenClose">×</button>
+                    <img id="fullscreenImage" class="fullscreen-image" alt="Barcode Full View">
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/barcode-generator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

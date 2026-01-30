@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor - Resize, Convert & Transform Images | GoToolly</title>
+    <meta name="description" content="Free online image editor. Convert, resize, and edit images by dimensions, percentage, or aspect ratio. Supports JPG, PNG, WebP, and other formats. No uploads required.">
+    <meta name="keywords" content="image editor, image converter, image resizer, resize images, convert images, resize photos, online image editor">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        /* Professional Layout Styles */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: var(--space-8) 0;
+            margin-bottom: var(--space-6);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-6);
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            line-height: 1.2;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: var(--space-3);
+        }
+        
+        .hero-features {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+        
+        .feature-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: var(--space-1) var(--space-3);
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-stats {
+            display: grid;
+            gap: var(--space-3);
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-4);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+        
+        .stat-label {
+            font-size: var(--text-xs);
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .tool-navigation {
+            margin-bottom: var(--space-6);
+        }
+        
+        .nav-container {
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .nav-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--space-1);
+            color: var(--color-text);
+        }
+        
+        .tool-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .tool-option {
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--space-4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            gap: var(--space-3);
+            align-items: flex-start;
+        }
+        
+        .tool-option:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+        
+        .tool-option.active {
+            border-color: var(--color-primary);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.02) 100%);
+        }
+        
+        .option-icon {
+            font-size: 1.75rem;
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .option-content h3 {
+            margin: 0 0 var(--space-1);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .option-content p {
+            margin: 0;
+            color: var(--color-text-light);
+            font-size: var(--text-xs);
+            line-height: 1.4;
+        }
+        
+        .tool-workspace {
+            background: var(--color-surface);
+            border-radius: 20px;
+            padding: var(--space-6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .workspace-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--space-4);
+        }
+        
+        .header-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 var(--space-1);
+        }
+        
+        .header-content p {
+            margin: 0;
+            color: var(--color-text-light);
+            font-size: var(--text-sm);
+        }
+        
+        .file-counter {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: 50px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+        
+        .upload-zone {
+            margin-bottom: var(--space-4);
+        }
+        
+        .upload-area {
+            display: block;
+            width: 100%;
+            padding: var(--space-6);
+            border: 2px dashed var(--color-border);
+            border-radius: 16px;
+            background: var(--color-bg-alt);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: var(--space-4);
+        }
+        
+        .upload-area:hover {
+            border-color: var(--color-primary);
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--space-2);
+            background: var(--color-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .upload-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .upload-content h3 {
+            margin: 0 0 var(--space-1);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .upload-content p {
+            margin: 0;
+            color: var(--color-text-light);
+            font-size: var(--text-xs);
+        }
+        
+        .upload-info {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--space-4);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-2);
+        }
+        
+        .info-item {
+            display: flex;
+            gap: var(--space-2);
+            align-items: flex-start;
+        }
+        
+        .info-icon {
+            font-size: 1.25rem;
+            width: 32px;
+            height: 32px;
+            background: var(--color-bg-alt);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .info-text strong {
+            display: block;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-1);
+        }
+        
+        .info-text span {
+            font-size: var(--text-xs);
+            color: var(--color-text-light);
+        }
+        
+        .settings-panel {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin-bottom: var(--space-4);
+        }
+        
+        .panel-header {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .panel-header h3 {
+            margin: 0 0 var(--space-1);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .panel-header p {
+            margin: 0;
+            color: var(--color-text-light);
+            font-size: var(--text-xs);
+        }
+        
+        .settings-content {
+            padding: var(--space-4);
+        }
+        
+        .setting-group {
+            margin-bottom: var(--space-3);
+        }
+        
+        .setting-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .setting-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-4);
+            align-items: center;
+        }
+        
+        .setting-label {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-1);
+        }
+        
+        .setting-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+        }
+        
+        .setting-value {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .setting-select {
+            padding: var(--space-3);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: white;
+            font-size: var(--text-sm);
+            min-width: 200px;
+        }
+        
+        .quality-control {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            min-width: 200px;
+        }
+        
+        .quality-slider {
+            width: 100%;
+        }
+        
+        .quality-markers {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--text-xs);
+            color: var(--color-text-light);
+        }
+        
+        .dimension-inputs {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-2);
+        }
+        
+        .dimension-group {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .dimension-input {
+            width: 80px;
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+        }
+        
+        .setting-header {
+            margin-bottom: var(--space-2);
+        }
+        
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+        
+        .option-item {
+            display: flex;
+            gap: var(--space-2);
+            align-items: flex-start;
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        .option-item:hover {
+            background: var(--color-bg-alt);
+        }
+        
+        .option-checkbox {
+            margin-top: 2px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-1);
+        }
+        
+        .option-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+        }
+        
+        .progress-section {
+            background: var(--color-bg-alt);
+            border-radius: 12px;
+            padding: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+        
+        .progress-label {
+            font-weight: 500;
+        }
+        
+        .progress-percentage {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        
+        .progress-track {
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, #4338ca 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .action-panel {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+            margin-top: var(--space-4);
+        }
+        
+        .btn-primary, .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: var(--text-base);
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: white;
+            border-color: var(--color-border);
+            color: var(--color-text);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-large {
+            padding: var(--space-3) var(--space-6);
+            font-size: 1rem;
+        }
+        
+        .tool-interface {
+            flex: 1;
+        }
+        
+        .tool-sidebar {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-option {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .workspace-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-4);
+            }
+            
+            .setting-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-panel {
+                flex-direction: column;
+            }
+        }
+        
+        /* Legacy styles for remaining elements */
+        .tabs-container {
+            display: flex;
+            gap: var(--space-1);
+            margin-bottom: var(--space-6);
+            border-bottom: 2px solid var(--color-border);
+            overflow-x: auto;
+        }
+        
+        .tab-button {
+            padding: var(--space-3) var(--space-4);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .tab-button:hover {
+            color: var(--color-text);
+        }
+        
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .file-drop-zone {
+            border: 2px dashed var(--color-border);
+            border-radius: 12px;
+            padding: var(--space-8);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            background-color: var(--color-bg-alt);
+        }
+        
+        .file-drop-zone:hover,
+        .file-drop-zone.dragover {
+            border-color: var(--color-primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .file-drop-zone svg {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--space-3);
+            color: var(--color-primary);
+            opacity: 0.7;
+        }
+        
+        .form-section {
+            margin-bottom: var(--space-3);
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+        }
+        
+        .form-input,
+        .form-select {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-size: var(--text-sm);
+            background-color: var(--color-bg-alt);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background-color: white;
+        }
+        
+        .range-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--color-border);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+        }
+        
+        .range-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .resize-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        .preview-box {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .preview-title {
+            font-weight: 500;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            margin-bottom: var(--space-3);
+            border-radius: 6px;
+        }
+        
+        .preview-stats {
+            font-size: var(--text-xs);
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+        
+        .result-item {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .result-image {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: var(--space-3);
+            border-radius: 6px;
+        }
+        
+        .result-info {
+            font-size: var(--text-xs);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-3);
+        }
+        
+        .result-download {
+            display: inline-block;
+            padding: var(--space-2) var(--space-3);
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .result-download:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+        
+        .checkbox-input {
+            cursor: pointer;
+        }
+        
+        .checkbox-label {
+            cursor: pointer;
+            font-size: var(--text-sm);
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+        }
+        
+        .notification {
+            position: fixed;
+            top: var(--space-4);
+            right: var(--space-4);
+            padding: var(--space-3) var(--space-4);
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 6px;
+            font-size: var(--text-sm);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification.error {
+            background-color: #ef4444;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .resize-preview,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-container {
+                margin-bottom: var(--space-4);
+            }
+            
+            .tab-button {
+                padding: var(--space-2) var(--space-3);
+                font-size: var(--text-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="../assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Tools</a>
+                    <a href="../../guides/index.html" class="nav-link">Guides</a>
+                    <a href="../../about" class="nav-link">About</a>
+                    <a href="../../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Professional Image Editor</h1>
+                        <p class="hero-description">
+                            Transform your images with enterprise-grade tools. Convert between formats, resize with precision, and optimize for web—all with complete privacy.
+                        </p>
+                        <div class="hero-features">
+                            <div class="feature-badge">🔒 100% Private</div>
+                            <div class="feature-badge">⚡ Instant Processing</div>
+                            <div class="feature-badge">📱 Mobile Friendly</div>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Formats Supported</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Browser-Based</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Data Uploaded</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool Layout -->
+            <div class="tool-layout" style="display: block;">
+                <!-- Main Interface -->
+                <div class="tool-interface" style="width: 100%;">
+            <!-- Tool Navigation -->
+            <section class="tool-navigation">
+                <div class="nav-container">
+                    <h2 class="nav-title">Choose Your Tool</h2>
+                    <div class="tool-options">
+                        <div class="tool-option active" data-tab="converter">
+                            <div class="option-icon">🔄</div>
+                            <div class="option-content">
+                                <h3>Format Converter</h3>
+                                <p>Transform images between JPG, PNG, WebP, and AVIF formats</p>
+                            </div>
+                        </div>
+                        <div class="tool-option" data-tab="resizer">
+                            <div class="option-icon">📏</div>
+                            <div class="option-content">
+                                <h3>Image Resizer</h3>
+                                <p>Resize images by pixels, percentage, or aspect ratio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                    <!-- Format Converter Tool -->
+                    <div id="converter" class="tab-content active">
+                        <div class="tool-workspace">
+                            <div class="workspace-header">
+                                <div class="header-content">
+                                    <h2>Format Converter</h2>
+                                    <p>Professional image format conversion with optimized settings</p>
+                                </div>
+                                <div class="header-stats">
+                                    <span id="converter-file-count" class="file-counter">0 files ready</span>
+                                </div>
+                            </div>
+
+                            <!-- Upload Zone -->
+                            <div class="upload-zone">
+                                <input type="file" id="converter-image-input" class="file-input" accept="image/*" multiple>
+                                <label for="converter-image-input" class="upload-area">
+                                    <div class="upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                        </svg>
+                                    </div>
+                                    <div class="upload-content">
+                                        <h3>Drop images here or click to select</h3>
+                                        <p>Supports JPG, PNG, WebP, GIF, BMP • Max 10 MB each</p>
+                                    </div>
+                                </label>
+                                
+                                <div class="upload-info">
+                                    <div class="info-grid">
+                                        <div class="info-item">
+                                            <div class="info-icon">🔒</div>
+                                            <div class="info-text">
+                                                <strong>Private Processing</strong>
+                                                <span>Files never leave your browser</span>
+                                            </div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-icon">⚡</div>
+                                            <div class="info-text">
+                                                <strong>Instant Results</strong>
+                                                <span>No waiting for uploads</span>
+                                            </div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-icon">📁</div>
+                                            <div class="info-text">
+                                                <strong>Batch Processing</strong>
+                                                <span>Convert multiple images at once</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Settings Panel -->
+                            <div class="settings-panel">
+                                <div class="panel-header">
+                                    <h3>Conversion Settings</h3>
+                                    <p>Configure your output preferences</p>
+                                </div>
+                                
+                                <div class="settings-content">
+                                    <div class="setting-group">
+                                        <div class="setting-row">
+                                            <div class="setting-info">
+                                                <label for="converter-output-format" class="setting-label">Output Format</label>
+                                                <span class="setting-description">Choose the best format for your use case</span>
+                                            </div>
+                                            <select id="converter-output-format" class="setting-select">
+                                                <option value="jpeg">JPEG - Best for photos</option>
+                                                <option value="png">PNG - Best with transparency</option>
+                                                <option value="webp">WebP - Modern, excellent compression</option>
+                                                <option value="avif">AVIF - Next-gen format</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <div class="setting-row">
+                                            <div class="setting-info">
+                                                <label for="converter-quality" class="setting-label">
+                                                    Quality: <span id="converter-quality-value" class="setting-value">92%</span>
+                                                </label>
+                                                <span class="setting-description">Higher values = better quality, larger files</span>
+                                            </div>
+                                            <div class="quality-control">
+                                                <input type="range" id="converter-quality" class="quality-slider" min="10" max="100" value="92" step="5">
+                                                <div class="quality-markers">
+                                                    <span class="marker">Smaller</span>
+                                                    <span class="marker">Better</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <div class="setting-row">
+                                            <div class="setting-info">
+                                                <label for="converter-resize-mode" class="setting-label">Resize Option</label>
+                                                <span class="setting-description">Optionally resize during conversion</span>
+                                            </div>
+                                            <select id="converter-resize-mode" class="setting-select">
+                                                <option value="none">Keep original size</option>
+                                                <option value="width">Set maximum width</option>
+                                                <option value="height">Set maximum height</option>
+                                                <option value="both">Set exact dimensions</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="resize-options" style="display: none;">
+                                        <div class="dimension-inputs">
+                                            <div class="dimension-group" id="converter-width-container" style="display: none;">
+                                                <label for="converter-max-width" class="dimension-label">Width</label>
+                                                <input type="number" id="converter-max-width" class="dimension-input" min="1" max="10000" value="1920" placeholder="1920">
+                                                <span class="dimension-unit">px</span>
+                                            </div>
+                                            <div class="dimension-group" id="converter-height-container" style="display: none;">
+                                                <label for="converter-max-height" class="dimension-label">Height</label>
+                                                <input type="number" id="converter-max-height" class="dimension-input" min="1" max="10000" value="1080" placeholder="1080">
+                                                <span class="dimension-unit">px</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <div class="setting-header">
+                                            <span class="setting-label">Advanced Options</span>
+                                        </div>
+                                        <div class="options-list">
+                                            <label class="option-item">
+                                                <input type="checkbox" id="converter-preserve-metadata" class="option-checkbox">
+                                                <div class="option-content">
+                                                    <span class="option-title">Preserve metadata</span>
+                                                    <span class="option-description">Keep EXIF data, color profiles</span>
+                                                </div>
+                                            </label>
+                                            <label class="option-item">
+                                                <input type="checkbox" id="converter-optimize-png" class="option-checkbox" checked>
+                                                <div class="option-content">
+                                                    <span class="option-title">Optimize PNG files</span>
+                                                    <span class="option-description">Reduce file size without quality loss</span>
+                                                </div>
+                                            </label>
+                                            <label class="option-item">
+                                                <input type="checkbox" id="converter-progressive-jpeg" class="option-checkbox">
+                                                <div class="option-content">
+                                                    <span class="option-title">Progressive JPEG</span>
+                                                    <span class="option-description">Load images progressively</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Section -->
+                            <div id="converter-progress-area" class="progress-section" style="display: none;">
+                                <div class="progress-container">
+                                    <div class="progress-header">
+                                        <span id="converter-progress-text" class="progress-label">Processing images...</span>
+                                        <span id="converter-progress-percent" class="progress-percentage">0%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-fill" id="converter-progress-fill" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Panel -->
+                            <div class="action-panel">
+                                <button id="converter-convert-btn" class="btn-primary btn-large" disabled>
+                                    <span class="btn-icon">🔄</span>
+                                    <span class="btn-text">Convert Images</span>
+                                </button>
+                                <button id="converter-reset-btn" class="btn-secondary btn-large">
+                                    <span class="btn-icon">↻</span>
+                                    <span class="btn-text">Reset</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resizer Tab -->
+                    <div id="resizer" class="tab-content">
+                        <div class="form-section">
+                            <h3 style="margin-bottom: var(--space-4);">Step 1: Select Image</h3>
+                            <label for="resizer-image-input" class="file-drop-zone" id="resizer-drop-zone" style="margin: 0; display: block; width: 100%; box-sizing: border-box;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <p style="margin: 0; font-weight: 500;">Drag image here or click to browse</p>
+                                <p style="margin: var(--space-2) 0 0; font-size: var(--text-sm); color: var(--color-text-light);">
+                                    JPG, PNG, WebP, GIF • Up to 10 MB
+                                </p>
+                            </label>
+                            <input type="file" id="resizer-image-input" accept="image/*" style="display: none;">
+                            <div id="resizer-file-info" style="margin-top: var(--space-4); display: none;">
+                                <p style="font-weight: 500; margin-bottom: var(--space-2);">Selected Image:</p>
+                                <div style="font-size: var(--text-sm); color: var(--color-text-light);">
+                                    <p id="resizer-file-name"></p>
+                                    <p id="resizer-file-dimensions"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Settings -->
+                        <div class="form-section" style="display: none;" id="resizer-settings-section">
+                            <h3 style="margin-bottom: var(--space-4);">Step 2: Resize Settings</h3>
+                            
+                            <div class="settings-grid">
+                                <div class="form-group">
+                                    <label for="resizer-resize-mode" class="form-label">Resize Mode</label>
+                                    <select id="resizer-resize-mode" class="form-select">
+                                        <option value="dimensions">By Dimensions</option>
+                                        <option value="percentage">By Percentage</option>
+                                        <option value="aspect-ratio">By Aspect Ratio</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Dimensions Mode -->
+                            <div id="resizer-dimensions-mode" class="settings-grid" style="margin-top: var(--space-4);">
+                                <div class="form-group">
+                                    <label for="resizer-resize-width" class="form-label">Width (px)</label>
+                                    <input type="number" id="resizer-resize-width" class="form-input" placeholder="800" min="1" max="10000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="resizer-resize-height" class="form-label">Height (px)</label>
+                                    <input type="number" id="resizer-resize-height" class="form-input" placeholder="600" min="1" max="10000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="resizer-maintain-ratio" class="form-label">
+                                        <input type="checkbox" id="resizer-maintain-ratio" checked> Maintain Aspect Ratio
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Percentage Mode -->
+                            <div id="resizer-percentage-mode" class="settings-grid" style="margin-top: var(--space-4); display: none;">
+                                <div class="form-group">
+                                    <label for="resizer-resize-percent" class="form-label">Scale (%)</label>
+                                    <div style="display: flex; gap: var(--space-2); align-items: center;">
+                                        <input type="range" id="resizer-resize-percent" class="range-slider" min="10" max="200" value="50" step="5">
+                                        <span id="resizer-percent-value" style="min-width: 45px; font-weight: 500;">50%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Aspect Ratio Mode -->
+                            <div id="resizer-aspect-mode" class="settings-grid" style="margin-top: var(--space-4); display: none;">
+                                <div class="form-group">
+                                    <label for="resizer-aspect-preset" class="form-label">Aspect Ratio</label>
+                                    <select id="resizer-aspect-preset" class="form-select">
+                                        <option value="custom">Custom</option>
+                                        <option value="1:1">1:1 (Square)</option>
+                                        <option value="4:3">4:3 (Standard)</option>
+                                        <option value="16:9">16:9 (Widescreen)</option>
+                                        <option value="3:2">3:2 (Photo)</option>
+                                        <option value="9:16">9:16 (Portrait)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resizer-aspect-width" class="form-label">Target Width (px)</label>
+                                    <input type="number" id="resizer-aspect-width" class="form-input" placeholder="800" min="1" max="10000">
+                                </div>
+                            </div>
+
+                            <div class="settings-grid" style="margin-top: var(--space-4);">
+                                <div class="form-group">
+                                    <label for="resizer-output-format" class="form-label">Output Format</label>
+                                    <select id="resizer-output-format" class="form-select">
+                                        <option value="png">PNG</option>
+                                        <option value="jpg">JPG</option>
+                                        <option value="webp">WebP</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resizer-output-quality" class="form-label">Quality</label>
+                                    <div style="display: flex; gap: var(--space-2); align-items: center;">
+                                        <input type="range" id="resizer-output-quality" class="range-slider" min="10" max="100" value="92" step="5">
+                                        <span id="resizer-quality-value" style="min-width: 45px; font-weight: 500;">92%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: var(--space-6); display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                                <button id="resizer-resize-btn" class="btn btn-primary" style="flex: 1; min-width: 120px;">Resize Image</button>
+                                <button id="resizer-reset-btn" class="btn btn-secondary" style="flex: 1; min-width: 120px;">Reset</button>
+                            </div>
+                        </div>
+
+                        <!-- Preview -->
+                        <div id="resizer-preview-section" style="display: none;">
+                            <div class="resize-preview">
+                                <div class="preview-box">
+                                    <p class="preview-title">Original Image</p>
+                                    <img id="resizer-preview-original" class="preview-image" alt="Original">
+                                    <div class="preview-stats">
+                                        <p id="resizer-original-dimensions"></p>
+                                        <p id="resizer-original-size"></p>
+                                    </div>
+                                </div>
+                                <div class="preview-box">
+                                    <p class="preview-title">Resized Preview</p>
+                                    <canvas id="resizer-preview-canvas" class="preview-image"></canvas>
+                                    <div class="preview-stats">
+                                        <p id="resizer-resized-dimensions"></p>
+                                        <p id="resizer-resized-size"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div id="resizer-results-section" style="display: none; margin-top: var(--space-8);">
+                            <h3 style="margin-bottom: var(--space-4);">Download Resized Image</h3>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <img id="resizer-result-image" class="result-image" alt="Resized image">
+                                    <div class="result-info">
+                                        <p id="resizer-result-dimensions"></p>
+                                        <p id="resizer-result-size"></p>
+                                    </div>
+                                    <a id="resizer-download-btn" class="result-download" download="resized-image.png">⬇️ Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Area (Converter) -->
+                    <div id="converter-results-area" class="results-workspace" style="display: none;">
+                        <div class="results-header">
+                            <div class="header-content">
+                                <h2>📊 Conversion Results</h2>
+                                <p>Your converted images are ready for download</p>
+                            </div>
+                            <div class="results-actions">
+                                    <div class="results-stats">
+                                    <span id="converter-completed-count">0</span> of <span id="converter-total-count">0</span> converted
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-grid" id="converter-results-content">
+                            <div class="empty-state">
+                                <div class="empty-icon">
+                                    <svg width="80" height="80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <h3>No images converted yet</h3>
+                                <p>Start converting images to see results here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar - Hidden to save space -->
+                <div class="tool-sidebar" style="display: none;">
+                    <div class="sidebar-section">
+                        <h3>How It Works</h3>
+                        <ol class="steps">
+                            <li class="step">
+                                <h4>Upload Image(s)</h4>
+                                <p>Select one or more images from your device.</p>
+                            </li>
+                            <li class="step">
+                                <h4>Choose Your Tool</h4>
+                                <p>Pick "Convert Format" or "Resize Image" from the tabs.</p>
+                            </li>
+                            <li class="step">
+                                <h4>Configure Settings</h4>
+                                <p>Adjust format, quality, size, or aspect ratio as needed.</p>
+                            </li>
+                            <li class="step">
+                                <h4>Download Results</h4>
+                                <p>Get your processed images in your chosen format.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Format Guide</h3>
+                        <ul class="sidebar-links">
+                            <li><strong>JPEG:</strong> Best for photographs</li>
+                            <li><strong>PNG:</strong> Graphics with transparency</li>
+                            <li><strong>WebP:</strong> Modern, excellent compression</li>
+                            <li><strong>AVIF:</strong> Next-generation, best quality</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Resize Tips</h3>
+                        <ul class="sidebar-links">
+                            <li>Use percentages for quick scaling</li>
+                            <li>Set aspect ratio for specific formats</li>
+                            <li>Maintain ratio to prevent distortion</li>
+                            <li>Use WebP for web optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Related Tools</h3>
+                        <ul class="sidebar-links">
+                            <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                            <li><a href="/tools/favicon-generator.html">Favicon Generator</a></li>
+                            <li><a href="/tools/pdf-rotator.html">PDF Rotator</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <section class="faq-section" style="margin-top: var(--space-6);">
+                <div class="section-header" style="margin-bottom: var(--space-4);">
+                    <h2 style="font-size: 1.5rem; margin: 0;">Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+                    <div class="card" style="padding: var(--space-4);">
+                        <h3 style="margin: 0 0 var(--space-2); font-size: 1rem;">💾 What's the difference between JPEG and PNG?</h3>
+                        <p style="margin: 0; font-size: var(--text-sm); line-height: 1.4;">JPEG uses lossy compression and is best for photographs. PNG uses lossless compression and supports transparency.</p>
+                    </div>
+                    
+                    <div class="card" style="padding: var(--space-4);">
+                        <h3 style="margin: 0 0 var(--space-2); font-size: 1rem;">🖼️ Should I use WebP or AVIF?</h3>
+                        <p style="margin: 0; font-size: var(--text-sm); line-height: 1.4;">WebP offers excellent compression with good browser support. AVIF provides even better compression but has limited support.</p>
+                    </div>
+                    
+                    <div class="card" style="padding: var(--space-4);">
+                        <h3 style="margin: 0 0 var(--space-2); font-size: 1rem;">📁 Can I convert multiple images?</h3>
+                        <p style="margin: 0; font-size: var(--text-sm); line-height: 1.4;">Yes, select multiple images for batch conversion. All images will be converted using the same settings.</p>
+                    </div>
+                    
+                    <div class="card" style="padding: var(--space-4);">
+                        <h3 style="margin: 0 0 var(--space-2); font-size: 1rem;">⭐ How do I maintain quality when resizing?</h3>
+                        <p style="margin: 0; font-size: var(--text-sm); line-height: 1.4;">Use high quality settings (85%+) and avoid enlarging beyond original dimensions. Resize to smaller sizes for best results.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Guides -->
+            <section class="related-tools" style="margin-top: var(--space-6);">
+                <h2 style="font-size: 1.5rem; margin: 0 0 var(--space-4);">Related Guides</h2>
+                <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+                    <div class="card guide-card" style="padding: var(--space-4);">
+                        <div class="card-icon" style="margin-bottom: var(--space-3);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3 style="margin: 0 0 var(--space-1); font-size: 1.1rem;">Image Optimization Guide</h3>
+                        <p style="margin: 0 0 var(--space-3); font-size: var(--text-sm); color: var(--color-text-light);">Learn best practices for converting and optimizing images for different uses.</p>
+                        <a href="/guides/compress-images-for-web.html" class="btn btn-primary btn-sm" style="font-size: var(--text-sm); padding: var(--space-2) var(--space-3);">Read Guide →</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/image-editor.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

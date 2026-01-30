@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# advertisements Google Ads
+User-agent: AdsBot-Google
+Allow: /
+
+# Ad file (must be public)
+User-agent: *
+Allow: /ads.txt
+
+Sitemap: https://gotoolly.com/sitemap.xml
+
+# Crawl delay (requests per second)
+Crawl-delay: 2
+
+# Disallow for technical files
+Disallow: /assets/js/analytics/
+Disallow: /_redirects

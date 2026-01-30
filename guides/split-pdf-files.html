@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF Files: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master PDF splitting and rotation techniques. Learn how to extract specific pages, split documents, and fix page orientation while maintaining quality and security.">
+    <meta name="keywords" content="split PDF files, extract PDF pages, rotate PDF pages, PDF splitter guide, separate PDF documents, fix PDF orientation, PDF page extraction">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><path d="M25,25 L50,25 L50,75 L25,75 Z" stroke="white" fill="none" stroke-width="2"/><path d="M50,25 L75,25 L75,75 L50,75 Z" stroke="white" fill="none" stroke-width="2"/></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .split-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .method-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .method-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #ec4899;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .use-case-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pro-tip {
+            background: rgba(236, 72, 153, 0.1);
+            border-left: 4px solid #ec4899;
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .security-box {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.05) 0%, rgba(219, 39, 119, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            border: 1px solid rgba(236, 72, 153, 0.2);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-6) 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--color-border);
+            padding: var(--space-3);
+            text-align: left;
+        }
+        
+        .comparison-table thead {
+            background-color: var(--color-surface-secondary);
+        }
+        
+        .rotation-visual {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+            flex-wrap: wrap;
+        }
+        
+        .rotation-example {
+            text-align: center;
+        }
+        
+        .rotation-box {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border-radius: var(--radius-md);
+            margin: 0 auto var(--space-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .rotation-0 { transform: rotate(0deg); }
+        .rotation-90 { transform: rotate(90deg); }
+        .rotation-180 { transform: rotate(180deg); }
+        .rotation-270 { transform: rotate(270deg); }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .split-methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rotation-visual {
+                gap: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="index.html" class="nav-link active">Guides</a>
+                    <a href="../about" class="nav-link">About</a>
+                    <a href="../contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Split & Rotate PDF Files: Complete Guide 2026</h1>
+                <p class="page-description">
+                    Master PDF splitting and rotation techniques. Extract specific pages, split documents into sections, and fix page orientation—all while maintaining quality and privacy.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/pdf-splitter-rotator.html" class="btn btn-primary btn-lg">✂️ Split & Rotate PDFs</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    No uploads • Local processing • Quality maintained • No sign-up
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why Split and Rotate PDFs?</h2>
+                    <p>
+                        PDF splitting and rotation are essential skills for document management. Whether extracting specific pages for sharing, organizing large documents, or fixing scanned pages with wrong orientation, these tools save time and improve workflow efficiency.
+                    </p>
+                    
+                    <div class="split-methods-grid">
+                        <div class="method-card">
+                            <div class="method-icon">📄</div>
+                            <h3 style="margin-top: 0;">Extract Specific Pages</h3>
+                            <p><strong>When to use:</strong> When you only need certain pages from a large document</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Share single chapters from books</li>
+                                <li>Extract invoices from statements</li>
+                                <li>Remove sensitive pages before sharing</li>
+                                <li>Create focused documents</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">🔄</div>
+                            <h3 style="margin-top: 0;">Fix Page Orientation</h3>
+                            <p><strong>When to use:</strong> When scanned pages are sideways or upside down</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Fix landscape/portrait issues</li>
+                                <li>Correct scanning errors</li>
+                                <li>Standardize document orientation</li>
+                                <li>Improve readability</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">📑</div>
+                            <h3 style="margin-top: 0;">Split into Sections</h3>
+                            <p><strong>When to use:</strong> When organizing large documents into logical parts</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Separate chapters or sections</li>
+                                <li>Create individual files for each page</li>
+                                <li>Organize by date or category</li>
+                                <li>Prepare for different recipients</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Security Section -->
+                <section>
+                    <div class="security-box">
+                        <h2 style="margin-top: 0;">🛡️ Security First: How Our PDF Tools Protect Your Files</h2>
+                        <p><strong>Local Processing:</strong> All splitting and rotation happens entirely in your browser. Your PDFs never leave your computer or get uploaded to any server.</p>
+                        <p><strong>Privacy Guaranteed:</strong> We cannot access, view, or store your documents. Your sensitive information remains completely private.</p>
+                        <p><strong>No Watermarks:</strong> Processed PDFs contain no hidden watermarks, tracking codes, or advertisements.</p>
+                        <p><strong>Temporary Storage:</strong> Files are temporarily stored only in your browser's memory and are cleared when you close the tab.</p>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Master PDF Splitting & Rotation</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Upload Your PDF</h3>
+                                <p>Open our <a href="../tools/pdf-splitter-rotator.html">PDF Splitter & Rotator tool</a>. Drag and drop your PDF file or click to browse and select. Your file stays on your device—all processing happens locally in your browser.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Choose Your Operation</h3>
+                                <p>Select between <strong>Splitting</strong> or <strong>Rotation</strong> modes:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li><strong>Splitting:</strong> Extract specific pages or split into individual pages</li>
+                                    <li><strong>Rotation:</strong> Fix page orientation issues (90°, 180°, 270°)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Configure Your Selection</h3>
+                                <p><strong>For Splitting:</strong> Select specific pages, page ranges, or choose "Split every page" to create individual files.</p>
+                                <p><strong>For Rotation:</strong> Select pages to rotate and choose rotation angle. Use preview to verify orientation changes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Process & Download</h3>
+                                <p>Click "Split PDF" or "Rotate PDF" to process. The operation happens locally in your browser. Download your processed files—split pages come as a ZIP archive, rotated PDFs as a single file.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rotation Visual Guide -->
+                <section>
+                    <h2>Understanding Page Rotation</h2>
+                    
+                    <div class="rotation-visual">
+                        <div class="rotation-example">
+                            <div class="rotation-box rotation-0">A</div>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>0°</strong><br>Original</p>
+                        </div>
+                        
+                        <div class="rotation-example">
+                            <div class="rotation-box rotation-90">A</div>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>90°</strong><br>Clockwise</p>
+                        </div>
+                        
+                        <div class="rotation-example">
+                            <div class="rotation-box rotation-180">A</div>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>180°</strong><br>Upside Down</p>
+                        </div>
+                        
+                        <div class="rotation-example">
+                            <div class="rotation-box rotation-270">A</div>
+                            <p style="margin: 0; font-size: var(--text-sm);"><strong>270°</strong><br>Counter-clockwise</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Common scenarios for rotation:</strong></p>
+                    <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                        <li><strong>90° rotation:</strong> Fix landscape pages scanned as portrait</li>
+                        <li><strong>180° rotation:</strong> Correct upside-down scanned pages</li>
+                        <li><strong>270° rotation:</strong> Alternative to 90° for specific orientation needs</li>
+                    </ul>
+                </section>
+
+                <!-- Use Cases -->
+                <section>
+                    <h2>Common Use Cases</h2>
+                    
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📊</div>
+                            <h4 style="margin: var(--space-2) 0;">Business Reports</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract specific sections for different departments or stakeholders</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">🎓</div>
+                            <h4 style="margin: var(--space-2) 0;">Academic Materials</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Split textbooks into chapters or extract specific exercises</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📸</div>
+                            <h4 style="margin: var(--space-2) 0;">Scanned Documents</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Fix orientation issues from scanning multiple pages at once</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📑</div>
+                            <h4 style="margin: var(--space-2) 0;">Legal Documents</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract specific contracts or agreements from combined files</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📄</div>
+                            <h4 style="margin: var(--space-2) 0;">Archival & Storage</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Organize documents by date, category, or project for better management</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <div class="use-case-icon">📧</div>
+                            <h4 style="margin: var(--space-2) 0;">Email Attachments</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract specific pages to keep email attachments small and focused</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Tips -->
+                <section>
+                    <h2>Professional Tips for PDF Splitting & Rotation</h2>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📄 Tip:</strong> <strong>Preview before processing</strong> - Always check which pages you've selected for splitting or rotation before finalizing.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🔄 Tip:</strong> <strong>Use auto-orientation detection</strong> - When rotating, let the tool detect and suggest corrections for mixed-orientation documents.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>💾 Tip:</strong> <strong>Keep originals</strong> - Always save your original PDFs separately before splitting or rotating, in case you need to make changes later.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>📁 Tip:</strong> <strong>Organize split files</strong> - When splitting into many files, they'll download as a ZIP archive. Extract and rename files immediately for easy organization.</p>
+                    </div>
+                    
+                    <div class="pro-tip">
+                        <p><strong>🎯 Tip:</strong> <strong>Combine operations</strong> - First rotate pages to correct orientation, then split into individual files for maximum flexibility.</p>
+                    </div>
+                </section>
+
+                <!-- Comparison Table -->
+                <section>
+                    <h2>Splitting vs. Extracting vs. Rotating</h2>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>Purpose</th>
+                                <th>Output</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Splitting</strong></td>
+                                <td>Divide PDF into multiple files at specific points</td>
+                                <td>Multiple PDF files (ZIP archive)</td>
+                                <td>Organizing large documents into sections</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Extracting</strong></td>
+                                <td>Select specific pages to create a new PDF</td>
+                                <td>Single PDF with selected pages</td>
+                                <td>Sharing specific content without full document</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotating</strong></td>
+                                <td>Change page orientation (90°, 180°, 270°)</td>
+                                <td>Single PDF with corrected orientation</td>
+                                <td>Fixing scanned documents, standardizing format</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Splitting Every Page</strong></td>
+                                <td>Create individual file for each page</td>
+                                <td>Multiple single-page PDFs (ZIP)</td>
+                                <td>Archival, batch processing, individual page editing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Will splitting or rotating reduce PDF quality?</h3>
+                        <p>No quality loss occurs during splitting or rotation. These are non-destructive operations that reorganize or reorient pages without affecting image quality, text clarity, or formatting.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I split and rotate in the same operation?</h3>
+                        <p>Our tool handles one operation at a time. For combined operations, first rotate pages to correct orientation, then split the corrected document. This two-step approach gives you the best results.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What happens to bookmarks and links when splitting?</h3>
+                        <p>Bookmarks and internal links are preserved within each split section. However, links pointing to pages in other sections may break. Review split documents to verify link functionality.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I rotate only specific pages in a document?</h3>
+                        <p>Yes! You can select individual pages or page ranges for rotation. This is perfect for documents with mixed orientation where only some pages need correction.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is there a limit to how many pages I can split at once?</h3>
+                        <p>Our tool can handle PDFs with hundreds of pages. Performance depends on your device's capabilities. For very large documents (500+ pages), consider splitting in multiple sessions.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complete PDF Management Suite</h2>
+                    <p>Manage your PDF documents with our full toolkit:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-merger.html">📄 PDF Merger</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Combine multiple PDFs into organized documents</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-compressor.html">💾 PDF Compressor</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Reduce PDF file sizes while maintaining quality</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-to-text.html">🔄 PDF to Text</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Extract text from PDF documents</p>
+                        </div>
+                        
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #db2777 0%, #ec4899 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Split & Rotate PDFs with Confidence</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Extract specific pages, split large documents, and fix orientation issues—all while keeping your files private and secure on your own device.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/pdf-splitter-rotator.html" class="btn btn-primary btn-lg">✂️ Split & Rotate Now</a>
+                    <a href="merge-pdf-files.html" class="btn btn-secondary btn-lg">Learn PDF Merging</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Local processing • No file uploads • Quality maintained • No sign-up required
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>PDF Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/pdf-splitter-rotator.html">PDF Splitter & Rotator</a></li>
+                        <li><a href="../tools/pdf-merger.html">PDF Merger</a></li>
+                        <li><a href="../tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="../tools/pdf-to-text.html">PDF to Text</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

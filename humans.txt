@@ -1,0 +1,23 @@
+/* TEAM */
+
+Project: GoToolly
+Website: https://gotoolly.com
+Description: Free, privacy-focused online tools that work entirely in your browser
+
+Developers: The GoToolly Team
+Location: Internet
+Contact: contact@gotoolly.com
+
+/* THANKS */
+
+Users: Thank you for trusting us with your tools
+Browsers: Chrome, Firefox, Safari, Edge, and all modern browsers
+Privacy advocates: For inspiring our privacy-first approach
+
+/* SITE */
+
+Last update: 2024
+Language: English
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: Vanilla JS, No frameworks
+Privacy: Client-side processing only

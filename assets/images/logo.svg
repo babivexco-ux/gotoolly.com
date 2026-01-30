@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="2" y="2" width="36" height="36" rx="8" fill="url(#logoGradient)"/>
+  
+  <!-- Letter G stylized as a tool/gear -->
+  <path d="M28 18h-4v-2c0-2.2-1.8-4-4-4s-4 1.8-4 4v2h-2c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-6 0h-4v-2c0-1.1.9-2 2-2s2 .9 2 2v2z" fill="white" opacity="0.95"/>
+  
+  <!-- Wrench accent -->
+  <path d="M25 24l3-3c.5.8.8 1.6.8 2.5 0 2.5-2 4.5-4.5 4.5-.9 0-1.7-.3-2.5-.8l3-3c.4-.4.4-1 0-1.4l-.8-.8 1-1z" fill="white" opacity="0.7"/>
+  
+  <!-- Sparkle/magic dot -->
+  <circle cx="31" cy="9" r="2" fill="white" opacity="0.8"/>
+</svg>

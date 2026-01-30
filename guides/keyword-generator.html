@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Generator: Complete SEO Guide 2026 | GoToolly</title>
+    <meta name="description" content="Master keyword research for SEO and content marketing. Learn how to generate, analyze, and implement keywords that drive traffic and conversions.">
+    <meta name="keywords" content="keyword generator, SEO keywords, content marketing, keyword research, long-tail keywords, SEO guide, keyword ideas">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: var(--space-12) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><rect width="100" height="100" fill="white"/><path d="M20,20 Q40,10 60,20 T100,20" stroke="white" fill="none" stroke-width="2"/><path d="M10,40 Q30,30 50,40 T90,40" stroke="white" fill="none" stroke-width="2"/><path d="M30,60 Q50,50 70,60 T100,60" stroke="white" fill="none" stroke-width="2"/></svg>');
+            background-size: 300px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+            position: relative;
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .keyword-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+        
+        .type-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .type-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+            margin: var(--space-10) 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: var(--space-8);
+            min-height: 60px;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #f59e0b;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .keyword-examples {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-3);
+            margin: var(--space-4) 0;
+        }
+        
+        .keyword-chip {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            padding: var(--space-2) var(--space-3);
+            font-size: var(--text-sm);
+            text-align: center;
+        }
+        
+        .seo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-6) 0;
+        }
+        
+        .seo-table th,
+        .seo-table td {
+            border: 1px solid var(--color-border);
+            padding: var(--space-3);
+            text-align: left;
+        }
+        
+        .seo-table thead {
+            background-color: var(--color-surface-secondary);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .strategy-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+        }
+        
+        .strategy-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-3);
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                padding-left: 0;
+                padding-top: 70px;
+            }
+            
+            .step-number {
+                position: static;
+                margin-bottom: var(--space-4);
+            }
+            
+            .keyword-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .keyword-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Keyword Generator: Complete SEO Guide 2026</h1>
+                <p class="page-description">
+                    Master keyword research for SEO success. Learn how to generate, analyze, and implement keywords that drive organic traffic, improve rankings, and boost conversions.
+                </p>
+                <div style="margin-top: var(--space-6); position: relative;">
+                    <a href="../tools/keyword-generator.html" class="btn btn-primary btn-lg">🔍 Generate Keywords Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8); position: relative;">
+                    Instant results • Multiple keyword types • No sign-up required
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why Keyword Research is Essential for SEO Success</h2>
+                    <p>
+                        Keywords are the foundation of all SEO and content marketing. Understanding what your audience searches for allows you to create content that answers their questions and solves their problems. Effective keyword research:
+                    </p>
+                    
+                    <div class="strategy-grid">
+                        <div class="strategy-card">
+                            <div class="strategy-icon">🎯</div>
+                            <h4 style="margin: var(--space-2) 0;">Target Audience</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Understand what your ideal customers are searching for</p>
+                        </div>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-icon">📈</div>
+                            <h4 style="margin: var(--space-2) 0;">Traffic Growth</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Drive consistent organic traffic through strategic targeting</p>
+                        </div>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-icon">💰</div>
+                            <h4 style="margin: var(--space-2) 0;">Conversion Focus</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Target keywords with high commercial intent and conversion potential</p>
+                        </div>
+                        
+                        <div class="strategy-card">
+                            <div class="strategy-icon">📊</div>
+                            <h4 style="margin: var(--space-2) 0;">Competitive Edge</h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Identify gaps in competitor content and opportunities to rank</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Keyword Types -->
+                <section>
+                    <h2>Understanding Different Keyword Types</h2>
+                    
+                    <div class="keyword-types">
+                        <div class="type-card">
+                            <div class="type-icon">🎯</div>
+                            <h3 style="margin-top: 0;">Exact Match Keywords</h3>
+                            <p><strong>Characteristics:</strong> Short, specific, high competition</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Single words or short phrases</li>
+                                <li>High search volume</li>
+                                <li>Very competitive</li>
+                                <li>Example: "SEO tools"</li>
+                            </ul>
+                            <p><strong>Best for:</strong> Brand awareness, competitive analysis</p>
+                        </div>
+                        
+                        <div class="type-card">
+                            <div class="type-icon">🎣</div>
+                            <h3 style="margin-top: 0;">Long-tail Keywords</h3>
+                            <p><strong>Characteristics:</strong> Longer phrases, lower competition, higher intent</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>3+ word phrases</li>
+                                <li>Specific user intent</li>
+                                <li>Higher conversion rates</li>
+                                <li>Example: "best SEO tools for beginners"</li>
+                            </ul>
+                            <p><strong>Best for:</strong> Conversions, specific queries, niche targeting</p>
+                        </div>
+                        
+                        <div class="type-card">
+                            <div class="type-icon">❓</div>
+                            <h3 style="margin-top: 0;">Question Keywords</h3>
+                            <p><strong>Characteristics:</strong> Natural language queries, informational intent</p>
+                            <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                <li>Start with who, what, when, where, why, how</li>
+                                <li>Informational search intent</li>
+                                <li>Great for FAQ content</li>
+                                <li>Example: "how to do keyword research"</li>
+                            </ul>
+                            <p><strong>Best for:</strong> Blog posts, guides, educational content</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Master Keyword Generation</h2>
+                    
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Start with Your Core Topic</h3>
+                                <p>Identify your main topic or niche. Enter it into our <a href="../tools/keyword-generator.html">Keyword Generator</a>. Think about your business, products, services, or content focus areas.</p>
+                                <p><strong>Example topics:</strong> "digital marketing," "healthy recipes," "web development"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Select Keyword Types</h3>
+                                <p>Choose which keyword types to generate:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li><strong>Exact Match:</strong> For broad targeting and competitive analysis</li>
+                                    <li><strong>Long-tail:</strong> For specific, conversion-focused keywords</li>
+                                    <li><strong>Questions:</strong> For educational and informational content</li>
+                                </ul>
+                                <p>Select all three for comprehensive keyword research.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Generate & Analyze Results</h3>
+                                <p>Click "Generate Keywords" to see dozens of keyword suggestions. Review the results and identify patterns, themes, and opportunities.</p>
+                                <div class="keyword-examples">
+                                    <h4 style="margin-top: 0;">Example Output for "SEO":</h4>
+                                    <div class="keyword-grid">
+                                        <div class="keyword-chip">SEO basics</div>
+                                        <div class="keyword-chip">SEO tools</div>
+                                        <div class="keyword-chip">SEO checklist</div>
+                                        <div class="keyword-chip">SEO best practices</div>
+                                        <div class="keyword-chip">how to improve SEO</div>
+                                        <div class="keyword-chip">SEO for beginners</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Organize & Prioritize Keywords</h3>
+                                <p>Copy your selected keywords and organize them by:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li><strong>Search intent:</strong> Informational, commercial, transactional</li>
+                                    <li><strong>Content type:</strong> Blog posts, product pages, landing pages</li>
+                                    <li><strong>Priority:</strong> High, medium, low based on relevance and opportunity</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Implement in Your Content Strategy</h3>
+                                <p>Use your keywords strategically:</p>
+                                <ul style="margin: var(--space-3) 0; padding-left: var(--space-4);">
+                                    <li>Primary keyword in title and first paragraph</li>
+                                    <li>Secondary keywords throughout content</li>
+                                    <li>Related keywords in subheadings and meta descriptions</li>
+                                    <li>Question keywords for FAQ sections</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Keyword Strategy Table -->
+                <section>
+                    <h2>Keyword Strategy by Content Type</h2>
+                    
+                    <table class="seo-table">
+                        <thead>
+                            <tr>
+                                <th>Content Type</th>
+                                <th>Best Keyword Types</th>
+                                <th>Search Intent</th>
+                                <th>Implementation Tips</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Blog Posts</strong></td>
+                                <td>Long-tail, Questions</td>
+                                <td>Informational</td>
+                                <td>Answer specific questions, provide solutions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Product Pages</strong></td>
+                                <td>Exact match, Long-tail</td>
+                                <td>Commercial/Transactional</td>
+                                <td>Highlight benefits, include buying keywords</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Landing Pages</strong></td>
+                                <td>Exact match</td>
+                                <td>Transactional</td>
+                                <td>Focus on conversion, clear CTAs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Guides & Tutorials</strong></td>
+                                <td>Questions, Long-tail</td>
+                                <td>Informational/Educational</td>
+                                <td>Step-by-step instructions, comprehensive coverage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FAQ Pages</strong></td>
+                                <td>Questions</td>
+                                <td>Informational</td>
+                                <td>Direct answers to common questions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Category Pages</strong></td>
+                                <td>Exact match</td>
+                                <td>Navigational/Commercial</td>
+                                <td>Broad coverage, filter options</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Pro Tips -->
+                <section>
+                    <h2>Advanced Keyword Research Tips</h2>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--space-4); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: var(--space-4) 0;">
+                        <p><strong>🎯 Tip:</strong> <strong>Think like your audience</strong> - What words would they actually use? Avoid industry jargon unless your audience uses it.</p>
+                    </div>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--space-4); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: var(--space-4) 0;">
+                        <p><strong>📊 Tip:</strong> <strong>Group related keywords</strong> - Create content clusters around core topics for better topical authority and internal linking.</p>
+                    </div>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--space-4); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: var(--space-4) 0;">
+                        <p><strong>🔍 Tip:</strong> <strong>Use modifiers</strong> - Add words like "best," "how to," "review," "vs," "price," "free," "buy" to expand your keyword lists.</p>
+                    </div>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--space-4); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: var(--space-4) 0;">
+                        <p><strong>🎯 Tip:</strong> <strong>Prioritize by intent</strong> - Focus on keywords with clear commercial intent for pages where you want conversions.</p>
+                    </div>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--space-4); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: var(--space-4) 0;">
+                        <p><strong>📈 Tip:</strong> <strong>Track and refine</strong> - Monitor which keywords drive traffic and conversions, then double down on what works.</p>
+                    </div>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>How many keywords should I target per page?</h3>
+                        <p>Focus on 1-2 primary keywords and 3-5 secondary keywords per page. The primary keyword should be in your title, URL, and first paragraph. Secondary keywords should naturally appear throughout the content.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Should I target high or low competition keywords?</h3>
+                        <p>Start with low-competition, long-tail keywords to build traction. As your authority grows, gradually target more competitive keywords. A mix of both is ideal for sustainable growth.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How often should I do keyword research?</h3>
+                        <p>Regularly! Review and update your keyword strategy quarterly. Search trends change, new keywords emerge, and your business evolves. Continuous research ensures you stay relevant.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I use the same keyword on multiple pages?</h3>
+                        <p>Avoid targeting the exact same primary keyword on multiple pages (keyword cannibalization). Instead, create unique content for each keyword variation or focus on different search intents.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How do I know if a keyword is worth targeting?</h3>
+                        <p>Consider: relevance to your audience, search volume, competition level, commercial intent, and your ability to create better content than what's currently ranking.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Complementary SEO Tools</h2>
+                    <p>Enhance your keyword research with these tools:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/url-slug-generator.html">🔗 URL Slug Generator</a></h4>
+                            <p style="margin: 0; font-size: var(--text-sm);">Create SEO-friendly URLs from your keywords</p>
+                        </div>
+                        
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <section style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); color: white; padding: var(--space-10); border-radius: var(--radius-xl); text-align: center; margin: var(--space-12) 0;">
+                <h2 style="color: white; margin-bottom: var(--space-3);">Start Your Keyword Research Journey</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Generate hundreds of keyword ideas in seconds. No complex tools or expensive subscriptions—just instant, actionable keyword suggestions.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/keyword-generator.html" class="btn btn-primary btn-lg">🔍 Generate Keywords Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Instant generation • Multiple keyword types • No sign-up required
+                </p>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>SEO & Marketing Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/keyword-generator.html">Keyword Generator</a></li>
+                        <li><a href="../tools/url-slug-generator.html">URL Slug Generator</a></li>
+                        <li><a href="../tools/index.html">Meta Tag Generator</a></li>
+                        <li><a href="../tools/index.html">Sitemap Generator</a></li>
+                        <li><a href="../tools/index.html">Text Analyzer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

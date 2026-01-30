@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Count Words, Characters & More | GoToolly</title>
+    <meta name="description" content="Count words, characters, sentences, paragraphs instantly. Track reading time, character frequency, and text statistics for free.">
+    <meta name="keywords" content="word counter, character counter, word count tool, text statistics, reading time calculator">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Critical CSS: preload and non-blocking load -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools/index.html" class="nav-link active">Tools</a>
+                    <a href="/guides/index.html" class="nav-link">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools/index.html" class="nav-link active">Tools</a>
+                    <a href="/guides/index.html" class="nav-link">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Word Counter</h1>
+                <p class="page-description">
+                    Analyze your text instantly. Count words, characters, sentences, paragraphs, and estimate reading time. Perfect for writers, students, and content creators.
+                </p>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-interface">
+                    <div class="tool-header">
+                        <h2>Analyze Your Text</h2>
+                        <p>Paste or type text to get detailed statistics</p>
+                    </div>
+                    
+                    <textarea id="text-input" class="text-area" placeholder="Paste or type your text here..." rows="12"></textarea>
+                    
+                    <div class="tool-actions" style="margin-top: var(--space-4);">
+                        <button id="reset-btn" class="btn btn-secondary">Clear Text</button>
+                    </div>
+                    
+                    <div id="stats" class="stats-grid" style="display:none; margin-top: var(--space-6);">
+                        <div class="stat-box">
+                            <div class="stat-value" id="word-count">0</div>
+                            <div class="stat-label">Words</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="char-count">0</div>
+                            <div class="stat-label">Characters</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="char-no-space">0</div>
+                            <div class="stat-label">Characters (no spaces)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="sentence-count">0</div>
+                            <div class="stat-label">Sentences</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="paragraph-count">0</div>
+                            <div class="stat-label">Paragraphs</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="reading-time">0 min</div>
+                            <div class="stat-label">Reading Time</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-sidebar">
+                    <div class="card">
+                        <h3>How to Use</h3>
+                        <ol>
+                            <li>Paste or type text</li>
+                            <li>Statistics update automatically</li>
+                            <li>Use Clear to reset</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Statistics Guide</h3>
+                        <dl class="definition-list">
+                            <dt>Words</dt>
+                            <dd>Individual terms separated by spaces</dd>
+                            
+                            <dt>Characters</dt>
+                            <dd>All symbols including spaces</dd>
+                            
+                            <dt>No Spaces</dt>
+                            <dd>Character count without whitespace</dd>
+                            
+                            <dt>Sentences</dt>
+                            <dd>Groups ending with . ! ?</dd>
+                            
+                            <dt>Paragraphs</dt>
+                            <dd>Text blocks separated by line breaks</dd>
+                            
+                            <dt>Reading Time</dt>
+                            <dd>Based on 238 words per minute</dd>
+                        </dl>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Common Limits</h3>
+                        <dl class="definition-list">
+                            <dt>Tweet</dt>
+                            <dd>280 characters</dd>
+                            
+                            <dt>Meta Description</dt>
+                            <dd>160 characters</dd>
+                            
+                            <dt>Email Subject</dt>
+                            <dd>50-60 characters</dd>
+                            
+                            <dt>Page Title</dt>
+                            <dd>50-60 characters</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+                            <li><strong>Sentences:</strong> Groups ending with . ! ?</li>
+                            <li><strong>Paragraphs:</strong> Text blocks separated by line breaks</li>
+                            <li><strong>Reading Time:</strong> Based on 200 words per minute</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>SEO optimization (meta descriptions)</li>
+                            <li>Content planning (article targets)</li>
+                            <li>Academic writing (word limits)</li>
+                            <li>Social media posts (character limits)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+                        <li><a href="/tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="/tools/word-counter.html">Word Counter</a></li>
+                        <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+                        <li><a href="/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/tools/index.html">View All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="/tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2024</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="/assets/js/main.js"></script>
+    <script src="/assets/js/tools/word-counter.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Pages from PDF: Complete Guide 2026 | GoToolly</title>
+    <meta name="description" content="Learn how to extract specific pages from PDF files. Step-by-step guide for splitting PDFs securely in your browser, preserving formatting and privacy.">
+    <meta name="keywords" content="extract PDF pages, split PDF files, PDF page extraction, PDF splitter guide, extract specific pages, PDF document organization">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/styles.min.css"></noscript>  
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        /* Page-specific styles */
+        .page-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-10);
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-3xl);
+        }
+        
+        .page-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            max-width: 48rem;
+            margin: 0 auto var(--space-6);
+            line-height: 1.6;
+        }
+        
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step-container {
+            display: grid;
+            gap: var(--space-8);
+            margin: var(--space-10) 0;
+        }
+        
+        .step-card {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--space-6);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .step-number {
+            background: var(--color-primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-xl);
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: var(--space-2);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+        
+        .use-case-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+        }
+        
+        .tip-box {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--color-primary);
+            padding: var(--space-4);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-4) 0;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-5) 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+            color: white;
+            padding: var(--space-10);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin: var(--space-12) 0;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: var(--space-3);
+        }
+        
+        @media (max-width: 768px) {
+            .step-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto;
+            }
+            
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="GoToolly" class="logo-svg" width="32" height="32">
+                    <span class="logo-text">GoToolly</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-button" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="../tools/index.html" class="nav-link">Tools</a>
+                    <a href="/guides/index.html" class="nav-link active">Guides</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>How to Extract Pages from PDF Files: Complete Guide (2026)</h1>
+                <p class="page-description">
+                    Learn professional techniques for extracting and splitting PDF pages. Extract specific pages, create organized documents, and maintain perfect formatting—all processed securely in your browser.
+                </p>
+                <div style="margin-top: var(--space-6);">
+                    <a href="../tools/pdf-splitter-rotator.html" class="btn btn-primary btn-lg">🛠️ Start Split &amp; Rotate Now</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    No uploads • No sign-up • Your files stay on your device
+                </p>
+            </div>
+
+            <!-- Guide Content -->
+            <article class="guide-content">
+                <!-- Introduction -->
+                <section>
+                    <h2>Why Extract Pages from PDF Documents?</h2>
+                    <p>
+                        PDF extraction is essential for modern document management. Whether you're sharing specific content, organizing archives, or creating focused documents, extracting pages helps you work more efficiently with PDF files.
+                    </p>
+                    
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">📁 Document Organization</h3>
+                            <p>Split large PDFs into logical sections for better organization and easier navigation.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">🔒 Privacy Protection</h3>
+                            <p>Remove sensitive pages before sharing documents with clients or colleagues.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">📧 Email-Friendly Files</h3>
+                            <p>Create smaller files that are easier to email and faster to download.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">📚 Educational Use</h3>
+                            <p>Extract specific chapters, exercises, or reference materials from textbooks.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">💼 Business Efficiency</h3>
+                            <p>Separate invoices, contracts, or reports from combined documents.</p>
+                        </div>
+                        
+                        <div class="use-case-card">
+                            <h3 style="margin-top: 0;">🎯 Focused Sharing</h3>
+                            <p>Share only relevant content without overwhelming recipients with entire documents.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step-by-Step Guide -->
+                <section>
+                    <h2>Step-by-Step: Extract Pages from PDF</h2>
+                    <p>Follow these simple steps to extract pages from any PDF file:</p>
+                    
+                    <div class="step-container">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Upload Your PDF</h3>
+                                <p>Navigate to our <a href="../tools/pdf-splitter-rotator.html">PDF Split &amp; Rotate tool</a>. Drag and drop your PDF file or click to browse and select. Your PDF never leaves your computer—all processing happens locally in your browser.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Preview & Select Pages</h3>
+                                <p>View thumbnails of all pages. Check boxes for pages you want to extract. Use "Select All" to choose everything, then uncheck unwanted pages. The preview helps ensure you select exactly what you need.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Extract Selected Pages</h3>
+                                <p>Click "Extract Pages" to begin processing. Our tool creates a new PDF containing only your selected pages. Formatting, images, and quality are preserved perfectly from the original document.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Download & Save</h3>
+                                <p>Download your new PDF file. It contains only the pages you selected, in their original order. Save it with a descriptive name for easy future reference.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pro Tips -->
+                <section>
+                    <h2>Professional Tips for PDF Extraction</h2>
+                    
+                    <div class="tip-box">
+                        <p><strong>💡 Tip:</strong> For large PDFs, use "Select All" first, then uncheck unwanted pages. This is much faster than checking many individual boxes.</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>💡 Tip:</strong> Extracted pages maintain their original quality. Images, fonts, and formatting remain exactly as in the source PDF.</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>💡 Tip:</strong> Need non-consecutive pages? Simply check each page you need—they'll appear in the extracted PDF in the same order as the original document.</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>💡 Tip:</strong> For privacy, always extract and share only necessary pages. Remove cover pages, headers, or other identifying information when sharing externally.</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>💡 Tip:</strong> Use descriptive filenames like "Contract-Pages-3-5-2026.pdf" to easily identify extracted documents later.</p>
+                    </div>
+                </section>
+
+                <!-- Common Scenarios -->
+                <section>
+                    <h2>Common Extraction Scenarios</h2>
+                    
+                    <h3>Academic & Research Papers</h3>
+                    <p>Extract specific sections, references, or appendices from research papers. Share only relevant content with collaborators or students.</p>
+                    
+                    <h3>Business Documents</h3>
+                    <p>Separate individual invoices from monthly statements, extract specific contract clauses, or create focused reports from comprehensive documents.</p>
+                    
+                    <h3>Legal Documents</h3>
+                    <p>Share only necessary pages of contracts, agreements, or legal briefs while maintaining document integrity and formatting.</p>
+                    
+                    <h3>Presentation Materials</h3>
+                    <p>Extract specific slides or handouts from presentation PDFs for distribution or archival purposes.</p>
+                </section>
+
+                <!-- FAQ -->
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h3>Can I reorder pages when extracting?</h3>
+                        <p>Our tool maintains the original page order from your source PDF. If you need to reorder pages, consider using a PDF editor after extraction or check our future tools for page reordering functionality.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What happens to formatting and quality?</h3>
+                        <p>All formatting, images, fonts, and quality are preserved exactly as in the original PDF. The extraction process creates a perfect copy of the selected pages.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is my PDF secure during extraction?</h3>
+                        <p>Yes! All processing happens locally in your browser. Your PDF file is never uploaded to any server. We cannot access, view, or store your documents.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I extract from password-protected PDFs?</h3>
+                        <p>For security reasons, password-protected PDFs cannot be processed. Please remove the password protection first using appropriate software, then use our tool for extraction.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What's the maximum file size?</h3>
+                        <p>PDFs up to 25MB can be processed efficiently. Larger files may require more processing time depending on your device's capabilities.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I extract pages from scanned PDFs?</h3>
+                        <p>Yes! Our tool works with both text-based and image-based (scanned) PDFs. However, scanned PDFs will remain as images in the extracted document.</p>
+                    </div>
+                </section>
+
+                <!-- Related Tools -->
+                <section>
+                    <h2>Related PDF Tools</h2>
+                    <p>Explore our other PDF tools for comprehensive document management:</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-splitter-rotator.html">PDF Splitter & Rotator Tool</a></h4>
+                            <p style="margin:0; font-size:var(--text-sm);">Rotate and split PDF pages as needed.</p>
+                        </div>
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-merger.html">PDF Merger Tool</a></h4>
+                            <p style="margin:0; font-size:var(--text-sm);">Combine multiple PDFs into a single document.</p>
+                        </div>
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-compressor.html">PDF Compressor Tool</a></h4>
+                            <p style="margin:0; font-size:var(--text-sm);">Reduce PDF file size while maintaining quality.</p>
+                        </div>
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-to-text.html">PDF to Text Tool</a></h4>
+                            <p style="margin:0; font-size:var(--text-sm);">Extract text from PDFs for editing and analysis.</p>
+                        </div>
+                        <div style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; margin-bottom: var(--space-2);"><a href="../tools/pdf-editor.html">PDF Editor Tool</a></h4>
+                            <p style="margin:0; font-size:var(--text-sm);">Reorder and edit PDF pages easily.</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>Ready to Extract PDF Pages?</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--text-lg); max-width: 42rem; margin: 0 auto var(--space-6);">
+                    Start extracting pages from your PDFs today. Process documents securely in your browser—no uploads, no sign-up required.
+                </p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+                    <a href="../tools/pdf-splitter-rotator.html" class="btn btn-primary btn-lg">🛠️ Extract Pages Now</a>
+                    <a href="../tools/index.html" class="btn btn-secondary btn-lg">Explore All Tools</a>
+                </div>
+                <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: rgba(255,255,255,0.8);">
+                    Your privacy is protected • No file uploads • Generated locally in your browser
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>GoToolly</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-4);">
+                        Free, privacy-focused online tools that work entirely in your browser.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>PDF Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="../tools/pdf-splitter-rotator.html">PDF Splitter &amp; Rotator</a></li>
+                        <li><a href="../tools/pdf-merger.html">PDF Merger</a></li>
+                        <li><a href="../tools/pdf-splitter-rotator.html">PDF Splitter &amp; Rotator</a></li>
+                        <li><a href="../tools/pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="../tools/pdf-to-text.html">PDF to Text</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/guides/index.html">Guides</a></li>
+                        <li><a href="../tools/index.html">All Tools</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © <span id="current-year">2026</span> GoToolly. All rights reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="/legal/privacy-policy">Privacy</a>
+                    <a href="/legal/terms-of-service">Terms</a>
+                    <a href="/legal/disclaimer">Disclaimer</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle (if not already in base.js)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    this.setAttribute('aria-expanded', 
+                        this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                    );
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
