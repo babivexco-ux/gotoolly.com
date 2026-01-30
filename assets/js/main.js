@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initAccordions();
     initTabs();
+    normalizeRootPaths();
     setActiveNavLink();
     initCopyButtons();
     initFileInputs();
@@ -133,16 +134,52 @@ function initTabs() {
 // Set Active Navigation Link
 function setActiveNavLink() {
     const currentPath = window.location.pathname;
+    const normalizedCurrent = currentPath.replace(/^\/gotoolly\.com/, '');
     const navLinks = document.querySelectorAll('.nav-link');
     
     navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (currentPath === linkPath || 
-            (currentPath.startsWith('/tools/') && linkPath === '/tools/index.html') ||
-            (currentPath.startsWith('/guides/') && linkPath === '/guides/index.html')) {
+        const linkPathRaw = link.getAttribute('href');
+        const linkPath = (linkPathRaw || '').replace(/^\/gotoolly\.com/, '');
+        if (normalizedCurrent === linkPath || 
+            (normalizedCurrent.startsWith('/tools/') && linkPath === '/tools/index.html') ||
+            (normalizedCurrent.startsWith('/guides/') && linkPath === '/guides/index.html')) {
             link.classList.add('active');
         }
     });
+}
+
+// Fix root-absolute paths for project GitHub Pages (prefix '/')
+function normalizeRootPaths() {
+    try {
+        const repoBase = '';
+
+        // Anchor tags
+        document.querySelectorAll('a[href^="/"]').forEach(el => {
+            const href = el.getAttribute('href');
+            if (!href) return;
+            if (href.startsWith('//') || href.startsWith('/')) return;
+            // Ensure root single slash ('/') maps to '/'
+            el.setAttribute('href', href === '/' ? repoBase + '/' : repoBase + href);
+        });
+
+        // Elements with src attributes (images, scripts)
+        document.querySelectorAll('[src^="/"]').forEach(el => {
+            const src = el.getAttribute('src');
+            if (!src) return;
+            if (src.startsWith('//') || src.startsWith('/')) return;
+            el.setAttribute('src', repoBase + src);
+        });
+
+        // Link tags (css, manifest)
+        document.querySelectorAll('link[href^="/"]').forEach(el => {
+            const h = el.getAttribute('href');
+            if (!h) return;
+            if (h.startsWith('//') || h.startsWith('/')) return;
+            el.setAttribute('href', repoBase + h);
+        });
+    } catch (err) {
+        console.warn('normalizeRootPaths failed:', err);
+    }
 }
 
 // Copy to Clipboard

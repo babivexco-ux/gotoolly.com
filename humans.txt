@@ -1,7 +1,7 @@
 /* TEAM */
 
 Project: GoToolly
-Website: https://gotoolly.com
+Website: https://gotoolly.netlify.app
 Description: Free, privacy-focused online tools that work entirely in your browser
 
 Developers: The GoToolly Team
