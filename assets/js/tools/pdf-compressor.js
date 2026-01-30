@@ -351,32 +351,64 @@ function showError(message, type = 'error') {
     // Create error message element
     const errorDiv = document.createElement('div');
     errorDiv.className = `error-message ${type}`;
-    errorDiv.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-        ${message}
-    `;
-    
-    // Style the error message
+
+    // Make it focusable/selectable and accessible
+    errorDiv.tabIndex = 0;
+    errorDiv.setAttribute('role', 'alert');
+    errorDiv.setAttribute('aria-live', 'assertive');
+
+    // Message content with selectable span and a copy button
+    const msgSpan = document.createElement('span');
+    msgSpan.style.flex = '1';
+    msgSpan.style.whiteSpace = 'pre-wrap';
+    msgSpan.style.overflowWrap = 'anywhere';
+    msgSpan.textContent = message;
+
+    const icon = document.createElement('i');
+    icon.className = `fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}`;
+
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'Copy';
+    copyBtn.style.cssText = 'margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:inherit;padding:6px 10px;border-radius:6px;cursor:pointer;';
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(message);
+            copyBtn.textContent = 'Copied';
+            setTimeout(() => (copyBtn.textContent = 'Copy'), 2000);
+        } catch (_e) {
+            // ignore clipboard failures
+        }
+    });
+
+    errorDiv.appendChild(icon);
+    errorDiv.appendChild(msgSpan);
+    errorDiv.appendChild(copyBtn);
+
+    // Style the error message with sensible fallbacks so it's never transparent
     errorDiv.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? 'var(--color-success)' : 'var(--color-error)'};
+        background: ${type === 'success' ? "var(--color-success, #059669)" : "var(--color-error, #ef4444)"};
         color: white;
         padding: 12px 20px;
         border-radius: var(--radius-lg);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
+        z-index: 10000;
         display: flex;
         align-items: center;
         gap: 10px;
-        max-width: 400px;
+        max-width: 640px;
         animation: slideIn 0.3s ease;
+        white-space: pre-wrap;
     `;
-    
+
     document.body.appendChild(errorDiv);
-    
-    // Remove after 5 seconds
+
+    // Focus it so users (and screen readers) notice it immediately
+    errorDiv.focus();
+
+    // Remove after a longer period to allow copying/selection
     setTimeout(() => {
         errorDiv.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => {
@@ -384,9 +416,9 @@ function showError(message, type = 'error') {
                 document.body.removeChild(errorDiv);
             }
         }, 300);
-    }, 5000);
-    
-    // Add keyframes for animation
+    }, 7000);
+
+    // Add keyframes for animation if missing
     if (!document.querySelector('#error-animations')) {
         const style = document.createElement('style');
         style.id = 'error-animations';
