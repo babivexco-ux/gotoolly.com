@@ -154,11 +154,25 @@ async function startClientCompression() {
         updateProgress('Parsing PDF structure...', 20);
         
         // Quick heuristic: check for encryption/token that pdf-lib may not support
-        const head = new TextDecoder('utf-8').decode(arrayBuffer.slice(0, 1024));
+        // and ensure the file contains a PDF header (%PDF-) near the start.
+        const headBytes = arrayBuffer.slice(0, 1024);
+        let head = '';
+        try {
+            head = new TextDecoder('utf-8', { fatal: false }).decode(headBytes);
+        } catch (e) {
+            head = '';
+        }
+
+        // Header check: look for %PDF- within the first 1KB
+        if (!/\%PDF-/.test(head)) {
+            // Provide a clear error for missing header (common for corrupted/truncated or wrong-file uploads)
+            throw new Error("No PDF header found (no '%PDF-' signature) — file may be corrupted, truncated, or not a PDF.");
+        }
+
         if (/\/Encrypt/.test(head) || /Encrypt\b/.test(head)) {
             throw new Error('PDF appears to be encrypted or uses features not supported client-side');
         }
-        
+
         // Load PDF using pdf-lib
         const { PDFDocument } = PDFLib;
         const pdfDoc = await PDFDocument.load(arrayBuffer);
@@ -408,6 +422,14 @@ function showError(message, type = 'error') {
     // Focus it so users (and screen readers) notice it immediately
     errorDiv.focus();
 
+    // Append to persistent on-page error log for debugging (visible while page is open)
+    try {
+        ensureErrorLog();
+        appendErrorLog(message);
+    } catch (e) {
+        console.warn('Failed to append to error log:', e && e.message);
+    }
+
     // Remove after a longer period to allow copying/selection
     setTimeout(() => {
         errorDiv.style.animation = 'slideOut 0.3s ease';
@@ -417,6 +439,43 @@ function showError(message, type = 'error') {
             }
         }, 300);
     }, 7000);
+
+// --- persistent error log helpers ---
+function ensureErrorLog() {
+    if (document.getElementById('pdf-error-log')) return;
+    const log = document.createElement('aside');
+    log.id = 'pdf-error-log';
+    log.style.cssText = 'position:fixed;bottom:20px;left:20px;max-width:480px;max-height:40vh;overflow:auto;background:rgba(0,0,0,0.7);color:#fff;padding:12px;border-radius:8px;z-index:10000;font-size:13px;';
+    const title = document.createElement('div');
+    title.innerHTML = '<strong>Last Errors</strong> <button id="clear-error-log" style="margin-left:10px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:inherit;padding:2px 6px;border-radius:6px;cursor:pointer;">Clear</button>';
+    title.style.marginBottom = '8px';
+    log.appendChild(title);
+    const list = document.createElement('div');
+    list.id = 'pdf-error-log-list';
+    log.appendChild(list);
+    document.body.appendChild(log);
+    document.getElementById('clear-error-log').addEventListener('click', () => { document.getElementById('pdf-error-log-list').innerHTML = ''; });
+}
+
+function appendErrorLog(msg) {
+    const list = document.getElementById('pdf-error-log-list');
+    if (!list) return;
+    const item = document.createElement('div');
+    const time = new Date().toISOString();
+    item.style.padding = '6px 0';
+    item.style.borderTop = '1px dashed rgba(255,255,255,0.08)';
+    item.innerHTML = `<div style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:4px">${time}</div><div style="white-space:pre-wrap;">${escapeHtml(msg)}</div>`;
+    list.insertBefore(item, list.firstChild);
+}
+
+function escapeHtml(unsafe) {
+    return String(unsafe)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
 
     // Add keyframes for animation if missing
     if (!document.querySelector('#error-animations')) {
