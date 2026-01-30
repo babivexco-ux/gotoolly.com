@@ -9,7 +9,7 @@ Allow: /
 User-agent: *
 Allow: /ads.txt
 
-Sitemap: https://gotoolly.com/sitemap.xml
+Sitemap: https://gotoolly.netlify.app/sitemap.xml
 
 # Crawl delay (requests per second)
 Crawl-delay: 2
