@@ -8,9 +8,9 @@
     <meta name="keywords" content="PDF merger, merge PDF, combine PDF, PDF combiner, merge documents, PDF joiner">
     
     <!-- Favicon & Manifest -->
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="../assets/images/logo-192.png">
-    <link rel="manifest" href="../site.webmanifest">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+    <link rel="manifest" href="/site.webmanifest">
     
     <!-- Critical CSS: preload and non-blocking load -->
     <link rel="preload" href="../assets/css/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -23,6 +23,38 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        /* PDF Merger tool styles: align with other tools */
+        .pdf-merger {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 30px;
+            margin-top: 30px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .pdf-merger { grid-template-columns: 1fr; }
+        }
+        .pdf-panel {
+            background: linear-gradient(145deg,#ffffff,#f9fafb);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 6px 24px rgba(15,23,42,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .panel-header { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #f0f2f5; }
+        .panel-title { font-size: 18px; font-weight:700; margin:0; display:flex; align-items:center; gap:10px; }
+        .upload-area { border:2px dashed var(--color-border); border-radius:var(--radius-lg); padding:var(--space-8); text-align:center; background:var(--color-bg-light); cursor:pointer; transition:var(--transition-normal); min-height:220px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .upload-area.dragover { border-color:var(--color-primary); background:var(--color-primary-light); transform:translateY(-2px); }
+        .file-list { margin-top:var(--space-4); display:flex; flex-direction:column; gap:8px; }
+        .file-item { display:flex; align-items:center; gap:12px; padding:10px; border:1px solid var(--color-border); border-radius:8px; background:var(--color-background); }
+        .file-item .name { font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .file-actions { margin-left:auto; display:flex; gap:8px; }
+        .sidebar .card { padding:16px; }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -74,59 +106,61 @@
                 </p>
             </div>
 
-            <div class="tool-layout">
-                <div class="tool-interface">
-                    <div class="tool-header">
-                        <h2>Merge Your PDFs</h2>
-                        <p>Upload multiple PDF files to combine them</p>
+            <div class="pdf-merger">
+                <div class="pdf-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title"><i class="fas fa-file-pdf"></i> Merge Your PDFs</h3>
+                        <p class="small">Upload multiple PDF files to combine them. Drag to reorder.</p>
                     </div>
-                    
-                    <div class="upload-area" id="drop-zone">
+
+                    <div class="upload-area" id="drop-zone" aria-label="Upload PDFs">
                         <input type="file" id="pdf-input" accept=".pdf" multiple style="display:none;">
-                        <p>Drag and drop PDFs here or <button class="btn btn-link">click to browse</button></p>
-                        <p class="small">You can select multiple files at once</p>
+                        <p style="margin:0 0 8px 0">Drag and drop PDFs here or <button id="browse-btn" class="btn btn-outline">click to browse</button></p>
+                        <p class="small" style="margin:0">You can select multiple files at once. Files will be merged in the order listed.</p>
                     </div>
-                    
-                    <div id="file-list" style="display:none;">
-                        <h3>Files to Merge</h3>
-                        <div id="files" class="file-list"></div>
-                        <p class="small">Drag to reorder files</p>
-                        <button id="merge-btn" class="btn btn-primary btn-lg">Merge PDFs</button>
-                        <button id="reset-btn" class="btn btn-secondary">Cancel</button>
+
+                    <div id="file-list" style="display:none; margin-top:16px;">
+                        <h4 style="margin-top:0">Files to Merge</h4>
+                        <div id="files" class="file-list" aria-live="polite"></div>
+
+                        <div style="display:flex;gap:12px;margin-top:16px;">
+                            <button id="merge-btn" class="btn btn-primary btn-lg">Merge PDFs</button>
+                            <button id="reset-btn" class="btn btn-secondary">Clear</button>
+                        </div>
                     </div>
-                    
-                    <div id="result-area" style="display:none;">
-                        <h3>Merge Complete</h3>
+
+                    <div id="result-area" style="display:none; margin-top:16px;">
+                        <h4>Merge Complete</h4>
                         <p>Your PDFs have been successfully merged into one document.</p>
                         <a id="download-btn" href="#" class="btn btn-primary btn-lg">Download Merged PDF</a>
                     </div>
                 </div>
-                
-                <div class="tool-sidebar">
+
+                <aside class="sidebar">
                     <div class="card">
                         <h3>How It Works</h3>
                         <ol>
                             <li>Upload multiple PDF files</li>
-                            <li>Arrange them in desired order</li>
-                            <li>Click merge and download</li>
+                            <li>Reorder them by dragging</li>
+                            <li>Click Merge and download the combined file</li>
                         </ol>
                     </div>
-                    
+
                     <div class="card">
                         <h3>Features</h3>
                         <ul>
                             <li>Combine up to 50 PDFs</li>
-                            <li>Drag to reorder pages</li>
-                            <li>No file size limits</li>
+                            <li>Drag to reorder files</li>
                             <li>No watermarks</li>
+                            <li>All client-side (privacy-focused)</li>
                         </ul>
                     </div>
-                    
+
                     <div class="card">
                         <h3>Security</h3>
                         <p>All processing happens in your browser. Files are never stored on our servers.</p>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </main>
