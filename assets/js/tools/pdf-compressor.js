@@ -147,9 +147,10 @@ async function startClientCompression() {
     
     updateProgress('Loading PDF document...', 10);
     
+    let arrayBuffer = null;
     try {
         // Read the file
-        const arrayBuffer = await currentFile.arrayBuffer();
+        arrayBuffer = await currentFile.arrayBuffer();
         
         updateProgress('Parsing PDF structure...', 20);
         
@@ -236,6 +237,24 @@ async function startClientCompression() {
         showError(msg);
         // Reveal server option so user can try server-side processing if available
         serverOption.style.display = 'block';
+        
+        // Attempt a PDF.js-based diagnostic/fallback to see if another parser can read the file
+        (async () => {
+            try {
+                if (typeof tryPdfJsFallback === 'function' && arrayBuffer) {
+                    const res = await tryPdfJsFallback(arrayBuffer);
+                    if (res && res.ok) {
+                        showError(`PDF.js parsed the document: ${res.numPages} pages detected. Consider server-side repair to reconstruct.`, 'success');
+                    } else {
+                        // Show reason why PDF.js failed
+                        showError(`PDF.js diagnostic failed: ${res && res.error ? res.error : 'unknown error'}`);
+                    }
+                }
+            } catch (e) {
+                console.warn('PDF.js diagnostic failed:', e && e.message);
+                appendErrorLog(`PDF.js diagnostic exception: ${e && e.message}`);
+            }
+        })();
     } finally {
         processingActive = false;
     }
@@ -441,6 +460,45 @@ function showError(message, type = 'error') {
     }, 7000);
 
 // --- persistent error log helpers ---
+/**
+ * Try parsing the PDF with pdfjs-dist (more tolerant parser) to gather diagnostic info.
+ * Downloads pdfjs-dist from CDN on-demand.
+ */
+async function tryPdfJsFallback(arrayBuffer) {
+    const CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js';
+    const WORKER = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.worker.min.js';
+    try {
+        if (!window.pdfjsLib) {
+            await new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = CDN;
+                s.onload = resolve;
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+        const pdfjsLib = window.pdfjsLib;
+        if (pdfjsLib && pdfjsLib.GlobalWorkerOptions) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER;
+        }
+        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+        const pdf = await loadingTask.promise;
+        const numPages = pdf.numPages || 0;
+        let info = {};
+        try {
+            const meta = await pdf.getMetadata();
+            info = meta && meta.info ? meta.info : {};
+        } catch (e) {
+            // ignore metadata errors
+        }
+        appendErrorLog(`PDF.js parsed: pages=${numPages}; info=${JSON.stringify(info)}`);
+        return { ok: true, numPages, info };
+    } catch (err) {
+        appendErrorLog(`PDF.js fallback error: ${err && err.message}`);
+        return { ok: false, error: err && err.message };
+    }
+}
+
 function ensureErrorLog() {
     if (document.getElementById('pdf-error-log')) return;
     const log = document.createElement('aside');
