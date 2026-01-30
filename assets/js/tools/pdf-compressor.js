@@ -153,6 +153,12 @@ async function startClientCompression() {
         
         updateProgress('Parsing PDF structure...', 20);
         
+        // Quick heuristic: check for encryption/token that pdf-lib may not support
+        const head = new TextDecoder('utf-8').decode(arrayBuffer.slice(0, 1024));
+        if (/\/Encrypt/.test(head) || /Encrypt\b/.test(head)) {
+            throw new Error('PDF appears to be encrypted or uses features not supported client-side');
+        }
+        
         // Load PDF using pdf-lib
         const { PDFDocument } = PDFLib;
         const pdfDoc = await PDFDocument.load(arrayBuffer);
@@ -211,7 +217,11 @@ async function startClientCompression() {
         
     } catch (error) {
         console.error('Compression error:', error);
-        showError('Failed to compress PDF. The file may be corrupted or use unsupported features.');
+        // Show detailed message and offer server-side option
+        const msg = error && error.message ? error.message : 'Failed to compress PDF. The file may be corrupted or use unsupported features.';
+        showError(msg);
+        // Reveal server option so user can try server-side processing if available
+        serverOption.style.display = 'block';
     } finally {
         processingActive = false;
     }
