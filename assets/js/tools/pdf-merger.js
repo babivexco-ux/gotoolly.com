@@ -23,17 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initEventListeners();
     
     function initEventListeners() {
+        // Browse button support
+        const browseBtn = document.getElementById('browse-btn');
+        if (browseBtn) {
+            browseBtn.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
+        }
+
         dropZone.addEventListener('click', () => fileInput.click());
+
+        // Use CSS class toggles for visual state (matches site styles)
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
-            dropZone.style.borderColor = '#2563eb';
-            dropZone.style.backgroundColor = '#eff6ff';
+            dropZone.classList.add('dragover');
         });
         dropZone.addEventListener('dragleave', () => {
-            dropZone.style.borderColor = '#d1d5db';
-            dropZone.style.backgroundColor = 'transparent';
+            dropZone.classList.remove('dragover');
         });
-        dropZone.addEventListener('drop', handleDrop);
+        dropZone.addEventListener('drop', (e) => {
+            dropZone.classList.remove('dragover');
+            handleDrop(e);
+        });
         
         fileInput.addEventListener('change', (e) => {
             const newFiles = Array.from(e.target.files).filter(f => f.type === 'application/pdf');
@@ -68,8 +77,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         filesContainer.innerHTML = selectedFiles.map((file, index) => `
             <div class="file-item" draggable="true" data-index="${index}">
-                <span>${index + 1}. ${file.name} (${(file.size / 1024).toFixed(1)} KB)</span>
-                <button class="btn btn-small" type="button" onclick="removeFile(${index})">Remove</button>
+                <div class="name">${index + 1}. ${file.name}</div>
+                <div class="meta" style="margin-left:8px;color:var(--color-text-light);font-size:13px">${(file.size / 1024).toFixed(1)} KB</div>
+                <div class="file-actions">
+                    <button class="btn btn-sm" type="button" onclick="removeFile(${index})">Remove</button>
+                </div>
             </div>
         `).join('');
         
